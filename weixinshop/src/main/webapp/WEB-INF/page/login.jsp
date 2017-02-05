@@ -5,9 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
 <!DOCTYPE html>
-
 <style type="text/css">
 	#Txtidcode{
 	width: 55%;
