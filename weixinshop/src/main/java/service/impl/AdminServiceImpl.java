@@ -63,7 +63,7 @@ public class AdminServiceImpl implements AdminService {
 			//String passWordMD5 = MD5Util.getMD5(admin.getPassword());
 			//admin.setPassword(passWordMD5);
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("adminId", admin.getId());
+			map.put("adminId", admin.getAdminId());
 			List<Admin> adminList = adminMapper.selectAdminByParams(map);
 			//如果前台传过来的密码没有更改，就不更改数据库中的密码
 			if(adminList != null && adminList.size() > 0){

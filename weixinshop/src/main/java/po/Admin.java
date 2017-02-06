@@ -10,7 +10,7 @@ public class Admin extends BaseEntity{
 	private static final long serialVersionUID = -843852738028185606L;
 
 	@Id
-    private Integer admin_id;
+    private Integer adminId;
 
     private String username;
 
@@ -30,15 +30,16 @@ public class Admin extends BaseEntity{
 
     private Integer adminPid;
 
-    public Integer getId() {
-        return admin_id;
-    }
 
-    public void setId(Integer id) {
-        this.admin_id = id;
-    }
+    public Integer getAdminId() {
+		return adminId;
+	}
 
-    public String getUsername() {
+	public void setAdminId(Integer adminId) {
+		this.adminId = adminId;
+	}
+
+	public String getUsername() {
         return username;
     }
 

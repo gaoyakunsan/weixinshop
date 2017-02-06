@@ -63,7 +63,7 @@ public class BaseController {
     {
     	Admin adminInfo = getNowUser();
     	if(!ST.isNull(adminInfo)){
-    		return adminInfo.getId();
+    		return adminInfo.getAdminId();
     	}
     	return null;
     }
