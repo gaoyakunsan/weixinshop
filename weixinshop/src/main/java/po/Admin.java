@@ -30,8 +30,9 @@ public class Admin extends BaseEntity{
 
     private Integer adminPid;
 
+   
 
-    public Integer getAdminId() {
+	public Integer getAdminId() {
 		return adminId;
 	}
 

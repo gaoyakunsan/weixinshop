@@ -2,10 +2,10 @@ package po;
 
 import java.util.Date;
 
-public class MapRolePrivilege extends MapRolePrivilegeKey {
-    private Integer roleId;
+public class MapAdminRole extends MapAdminRoleKey {
+    private Integer userId;
 
-    private Integer privilegeId;
+    private Integer roleId;
 
     private Byte isDeleted;
 
@@ -13,20 +13,20 @@ public class MapRolePrivilege extends MapRolePrivilegeKey {
 
     private Date updatedTime;
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public Integer getRoleId() {
         return roleId;
     }
 
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
-    }
-
-    public Integer getPrivilegeId() {
-        return privilegeId;
-    }
-
-    public void setPrivilegeId(Integer privilegeId) {
-        this.privilegeId = privilegeId;
     }
 
     public Byte getIsDeleted() {
