@@ -16,7 +16,7 @@
     privilege_id, display_name, privilege_name, privilege_code, url, parent_id, is_deleted, 
     created_time, updated_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.PrivilegeKey" >
+  <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.PrivilegeKey" >
     select 
     <include refid="Base_Column_List" />
     from privilege
@@ -138,5 +138,5 @@
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       updated_time = #{updatedTime,jdbcType=TIMESTAMP}
     where privilege_id = #{privilegeId,jdbcType=INTEGER}
-  </update>
+  </update> -->
 </mapper>

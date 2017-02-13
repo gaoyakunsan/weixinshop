@@ -2,7 +2,15 @@ package po;
 
 import java.util.Date;
 
-public class Privilege extends PrivilegeKey {
+public class Privilege extends BaseEntity {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -486649543453142095L;
+
+	private Integer privilegeId;
+	
     private String displayName;
 
     private String privilegeName;
@@ -19,6 +27,14 @@ public class Privilege extends PrivilegeKey {
 
     private Date updatedTime;
 
+    public Integer getPrivilegeId() {
+        return privilegeId;
+    }
+
+    public void setPrivilegeId(Integer privilegeId) {
+        this.privilegeId = privilegeId;
+    }
+    
     public String getDisplayName() {
         return displayName;
     }

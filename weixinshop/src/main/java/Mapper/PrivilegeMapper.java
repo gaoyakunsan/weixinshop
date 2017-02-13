@@ -1,9 +1,9 @@
 package Mapper;
 import po.Privilege;
-import po.PrivilegeKey;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface PrivilegeMapper {
-    int deleteByPrimaryKey(PrivilegeKey key);
+public interface PrivilegeMapper extends Mapper<Privilege>{
+    /*int deleteByPrimaryKey(PrivilegeKey key);
 
     int insert(Privilege record);
 
@@ -13,5 +13,5 @@ public interface PrivilegeMapper {
 
     int updateByPrimaryKeySelective(Privilege record);
 
-    int updateByPrimaryKey(Privilege record);
+    int updateByPrimaryKey(Privilege record);*/
 }

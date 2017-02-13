@@ -2,7 +2,15 @@ package po;
 
 import java.util.Date;
 
-public class MapAdminRole extends MapAdminRoleKey {
+public class MapAdminRole extends BaseEntity {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8932097570910475983L;
+
+	private Integer mapAdminRoleId;
+	 
     private Integer userId;
 
     private Integer roleId;
@@ -13,6 +21,15 @@ public class MapAdminRole extends MapAdminRoleKey {
 
     private Date updatedTime;
 
+    
+    public Integer getMapAdminRoleId() {
+        return mapAdminRoleId;
+    }
+
+    public void setMapAdminRoleId(Integer mapAdminRoleId) {
+        this.mapAdminRoleId = mapAdminRoleId;
+    }
+    
     public Integer getUserId() {
         return userId;
     }

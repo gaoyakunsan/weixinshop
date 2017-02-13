@@ -638,9 +638,7 @@
 	<!-- basic scripts -->
 
 	<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='<%=path%>
-		/ace/assets/js/jquery.mobile.custom.js'>"
-							+ "<"+"/script>");
+			if('ontouchstart' in document.documentElement) document.write("<script src='<%=path%>/ace/assets/js/jquery.mobile.custom.js'>"+ "<"+"/script>");
 	</script>
 	<script src="<%=path%>/assets/js/bootstrap.js"></script>
 

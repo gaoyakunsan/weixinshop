@@ -2,7 +2,15 @@ package po;
 
 import java.util.Date;
 
-public class Role extends RoleKey {
+public class Role extends BaseEntity {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8362067329964346248L;
+
+	private Integer roleId;
+	
     private String displayName;
 
     private String roleName;
@@ -15,6 +23,15 @@ public class Role extends RoleKey {
 
     private Date updatedTime;
 
+    
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+    
     public String getDisplayName() {
         return displayName;
     }

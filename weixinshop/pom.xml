@@ -159,6 +159,21 @@
 			<artifactId>xstream</artifactId>
 			<version>1.3.1</version>
 		</dependency>
+		
+		<!-- springmvc 返回json -->
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-core-asl</artifactId>
+		    <version>1.9.13</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-mapper-asl</artifactId>
+		    <version>1.9.13</version>
+		</dependency>
+		<!-- springmvc 返回json -->
+		
 	</dependencies>
 	<build>
 		<finalName>weixinshop</finalName>

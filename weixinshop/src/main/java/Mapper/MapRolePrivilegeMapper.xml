@@ -12,7 +12,7 @@
   <sql id="Base_Column_List" >
     map_role_privilege_id, role_id, privilege_id, is_deleted, created_time, updated_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.MapRolePrivilegeKey" >
+  <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.MapRolePrivilegeKey" >
     select 
     <include refid="Base_Column_List" />
     from map_role_privilege
@@ -102,5 +102,5 @@
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       updated_time = #{updatedTime,jdbcType=TIMESTAMP}
     where map_role_privilege_id = #{mapRolePrivilegeId,jdbcType=INTEGER}
-  </update>
+  </update> -->
 </mapper>

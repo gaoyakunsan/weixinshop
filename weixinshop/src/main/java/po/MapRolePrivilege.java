@@ -2,7 +2,15 @@ package po;
 
 import java.util.Date;
 
-public class MapRolePrivilege extends MapRolePrivilegeKey {
+public class MapRolePrivilege extends BaseEntity {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3092507639488764854L;
+
+	private Integer mapRolePrivilegeId;
+	
     private Integer roleId;
 
     private Integer privilegeId;
@@ -13,6 +21,15 @@ public class MapRolePrivilege extends MapRolePrivilegeKey {
 
     private Date updatedTime;
 
+    
+    public Integer getMapRolePrivilegeId() {
+        return mapRolePrivilegeId;
+    }
+
+    public void setMapRolePrivilegeId(Integer mapRolePrivilegeId) {
+        this.mapRolePrivilegeId = mapRolePrivilegeId;
+    }
+    
     public Integer getRoleId() {
         return roleId;
     }

@@ -12,7 +12,7 @@
   <sql id="Base_Column_List" >
     map_admin_role_id, user_id, role_id, is_deleted, created_time, updated_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.MapAdminRoleKey" >
+  <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.MapAdminRoleKey" >
     select 
     <include refid="Base_Column_List" />
     from map_admin_role
@@ -102,5 +102,5 @@
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       updated_time = #{updatedTime,jdbcType=TIMESTAMP}
     where map_admin_role_id = #{mapAdminRoleId,jdbcType=INTEGER}
-  </update>
+  </update> -->
 </mapper>

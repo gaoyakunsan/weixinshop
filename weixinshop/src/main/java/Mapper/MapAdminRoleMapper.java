@@ -1,9 +1,9 @@
 package Mapper;
 import po.MapAdminRole;
-import po.MapAdminRoleKey;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface MapAdminRoleMapper {
-    int deleteByPrimaryKey(MapAdminRoleKey key);
+public interface MapAdminRoleMapper extends Mapper<MapAdminRole>{
+    /*int deleteByPrimaryKey(MapAdminRoleKey key);
 
     int insert(MapAdminRole record);
 
@@ -13,5 +13,5 @@ public interface MapAdminRoleMapper {
 
     int updateByPrimaryKeySelective(MapAdminRole record);
 
-    int updateByPrimaryKey(MapAdminRole record);
+    int updateByPrimaryKey(MapAdminRole record);*/
 }
