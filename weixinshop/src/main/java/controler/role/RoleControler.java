@@ -15,15 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageInfo;
+
+import controler.base.BaseController;
 import po.Admin;
 import po.ResModel;
 import po.Role;
 import service.RoleService;
 import utils.ST;
-
-import com.github.pagehelper.PageInfo;
-
-import controler.base.BaseController;
 
 @Controller
 @RequestMapping(value="/role")
@@ -52,7 +51,7 @@ public class RoleControler extends BaseController {
         try {
         	int oneRecord = Integer.valueOf(getParam("rows"));// 一页几行
             int pageNo = Integer.valueOf(getParam("page"));// 第几页
-            //String userName = getParam("userName");
+            String displayName = getParam("displayName");
             String beginTime = getParam("beginTime");
             String endTime = getParam("endTime");
             Map<String, Object> map = new HashMap<String, Object>();
@@ -66,7 +65,7 @@ public class RoleControler extends BaseController {
             if(!ST.isNull(endTime)){
             	map.put("endTime", endTime + " 59:59:59");
             }
-            //map.put("userName", userName);
+            map.put("displayName", displayName);
             pageInfo= (PageInfo)roleService.selectRoleByParams(map);
 		} catch (Exception e) {
 			logger.error("selectAdmin error:" + e);
@@ -88,6 +87,39 @@ public class RoleControler extends BaseController {
 		}
 		resModel.setSuccess(bl);
 		resModel.setMsg("插入成功！");
+		return resModel;
+	}
+	
+	@RequestMapping(value="/selectRoleByRoleId")
+	@ResponseBody
+	public Role selectRoleByRoleId(HttpServletRequest request,HttpServletResponse response){
+		String roleId = getParam("roleId");
+		Role role = new Role();
+		if(ST.isNull(roleId)){
+			return role;
+		}
+		try {
+			role = roleService.selectRoleByRoleId(Integer.valueOf(roleId));
+		} catch (Exception e) {
+			logger.error("selectRoleByRoleId error:" + e);
+		}
+		return role;
+	}
+	
+	@RequestMapping(value="/updateRole")
+	@ResponseBody
+	public ResModel updateRole(@ModelAttribute Role role,
+			HttpServletRequest request,HttpServletResponse response){
+		ResModel  resModel = new ResModel();
+		boolean bl = false;
+		try {
+			bl = roleService.updateRole(role);
+		} catch (Exception e) {
+			logger.error("updateRole error:" + e);
+			resModel.setSuccess(bl);
+			return resModel;
+		}
+		resModel.setSuccess(bl);
 		return resModel;
 	}
 }

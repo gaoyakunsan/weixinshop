@@ -2,7 +2,6 @@ package Mapper;
 import java.util.List;
 import java.util.Map;
 
-import po.Admin;
 import po.Role;
 import tk.mybatis.mapper.common.Mapper;
 

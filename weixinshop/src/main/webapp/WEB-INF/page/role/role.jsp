@@ -55,13 +55,11 @@
 				<!-- #section:elements.form -->
 				<div class="form-group">
 					<div class="col-md-3">
-						<label class="col-sm-4 control-label no-padding-right" for="shortName">姓名</label>
+						<label class="col-sm-4 control-label no-padding-right" for="displayName">角色名称</label>
 						<div class="col-sm-8">
-							<input type="text" name="userName" class="form-control" />
+							<input type="text" name="displayName" class="form-control" />
 						</div>
 					</div>
-				</div>
-				<div class="form-group">
 					<div class="col-md-3">
 						<label class="col-sm-4 control-label no-padding-right" for="beginTime">开始时间 </label>
 						<div class="col-sm-8 input-group date form_date date-picker" data-date="" data-date-format="yyyy-mm-dd">
@@ -81,7 +79,7 @@
 							</span>
                         </div>	
 					</div> 
-					<div class="col-md-6 text-right">
+					<div class="col-md-3 text-right">
 						<button type="button" class="btn btn-md" onclick="queryRole()">
 							<i class="ace-icon fa fa-search orange"></i>搜索
 						</button>
@@ -89,7 +87,7 @@
 							<i class="ace-icon fa fa-repeat"></i>重置
 						</button>
 					</div>								
-				</div>								
+				</div>
 			</form>
 	      </div>
 	    </div>
@@ -138,46 +136,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="phone">手机</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="tel" name="phone" class="col-xs-12 col-sm-6" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="email">email:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="email" name="email"  class="col-xs-12 col-sm-7" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="password">密码:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="password" name="password" class="col-xs-12 col-sm-6" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="password2">确认密码:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="password" name="password2" class="col-xs-12 col-sm-6" />
-							</div>
-						</div>
-					</div> -->
 				</form>
 		     </div>
 			<div class="modal-footer">
@@ -193,79 +151,39 @@
 </div>
 <!-- 添加用户model end -->
 <!-- 修改用户model start -->
-<div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
              <div class="modal-header">
              	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			    <h4 class="modal-title" >修改用户</h4>
+			    <h4 class="modal-title" >修改角色</h4>
 		     </div>
 		     <div class="modal-body">
-            	<form class="form-horizontal " id="editAdminform" >
-            		<input type="hidden" name="id" class="col-xs-12 col-sm-6" />
+            	<form class="form-horizontal " id="editRoleform" >
+            		<input type="hidden" name="roleId" class="col-xs-12 col-sm-6" />
            			<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="username">用户名</label>
+						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="displayName">角色名称</label>
 
 						<div class="col-xs-12 col-sm-8">
 							<div class="clearfix">
-								<input type="text" name="username" class="col-xs-12 col-sm-6" />
+								<input type="text" name="displayName" class="col-xs-12 col-sm-6" />
 							</div>
 						</div>
 					</div>
 					<div class="space-2"></div>
 					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="realname">真实名</label>
+						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="roleCode">角色代码</label>
 
 						<div class="col-xs-12 col-sm-8">
 							<div class="clearfix">
-								<input type="text" name="realname" class="col-xs-12 col-sm-6" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="phone">手机</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="tel" name="phone" class="col-xs-12 col-sm-6" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="email">email:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="email" name="email"  class="col-xs-12 col-sm-7" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="password">密码:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="password" name="password" class="col-xs-12 col-sm-6" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="password2">确认密码:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="password" name="password2" class="col-xs-12 col-sm-6" />
+								<input type="text" name="roleCode" class="col-xs-12 col-sm-6" />
 							</div>
 						</div>
 					</div>
 				</form>				     
 		     </div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-md" onclick="editAndSaveAdmin()">
+				<button type="button" class="btn btn-md" onclick="editAndSaveRole()">
 			    	保存
 			    </button>
 			    <button type="button" class="btn btn-md" id="modalClose" data-dismiss="modal">

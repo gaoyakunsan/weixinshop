@@ -276,71 +276,46 @@ function saveRole(){
 	});
 	$("#addRoleModal").modal("hide");
 }
-//修改用户
-function editAdmin(){
+//修改角色
+function editRole(){
 	var lanId = $("#grid-table").jqGrid("getGridParam","selrow");
 	var rowData = $('#grid-table').getRowData(lanId);//获取选中行的记录 
-	var id = rowData.id;
-	if(!isNoEmpty(id)){
+	var roleId = rowData.roleId;
+	if(!isNoEmpty(roleId)){
 		alertmsg("warning","请至少选中一行 !");
 		return;
 	}
 	$.ajax({
 		type: "post",
-		url: webroot + "admin/selectAdminByAdminId.do",
-		data: {adminId: id},
+		url: webroot + "role/selectRoleByRoleId.do",
+		data: {roleId: roleId},
 		success: function(msg){
-			$("#editAdminModal input[name='id']").val(msg.id);
-			$("#editAdminModal input[name='username']").val(msg.username);
-			$("#editAdminModal input[name='realname']").val(msg.realname);
-			$("#editAdminModal input[name='password']").val(msg.password);
-			$("#editAdminModal input[name='password2']").val(msg.password);
-			$("#editAdminModal input[name='phone']").val(msg.phone);
-			$("#editAdminModal input[name='email']").val(msg.email);
-			$("#editAdminModal").modal("show");
-			
-			
+			$("#editRoleModal input[name='roleId']").val(msg.roleId);
+			$("#editRoleModal input[name='displayName']").val(msg.displayName);
+			$("#editRoleModal input[name='roleCode']").val(msg.roleCode);
+			$("#editRoleModal").modal("show");
 		}
 	});
 }
-//修改用户
-function editAndSaveAdmin(){
-	//form中验证不通过直接返回
-	if(!($('#editAdminform').valid())){
-		return;
-	}
-	//验证是否已存在此用户名
-	//var name = $("#editAdminform input[name='username']").val();
-	/*$.ajax({
+//修改角色 
+function editAndSaveRole(){
+	var data = getParams("#editRoleform");
+	$.ajax({
 		type: "post",
-		url: webroot + "admin/validateAdmin.do",
-		data: {name: name},
+		url: webroot + "role/updateRole.do",
+		data: data,
 		success: function(msg){
 			if(msg.success){
-				alertmsg("warning","用户名已存在!");
-				return;
-			}else{*/
-				//保存用户信息
-				var data = getParams("#editAdminform");
-				$.ajax({
-					type: "post",
-					url: webroot + "admin/updateAdmin.do",
-					data: data,
-					success: function(msg){
-						if(msg.success){
-							alertmsg("success", "修改用户成功!");
-							var data = $("form").serialize();
-							var url = webroot + "admin/selectAdmin.do";
-							$("#grid-table").jqGrid('setGridParam',{ 
-						        url: url + "?" + data, 
-						        page:1,
-						        mtype:"post"
-						    }).trigger("reloadGrid"); //重新载入 
-						}
-					}
-				});
-				$("#editAdminModal").modal("hide");
-		/*	}
+				alertmsg("success", "修改角色成功!");
+				var data = $("form").serialize();
+				var url = webroot + "role/selectRole.do";
+				$("#grid-table").jqGrid('setGridParam',{ 
+			        url: url + "?" + data, 
+			        page:1,
+			        mtype:"post"
+			    }).trigger("reloadGrid"); //重新载入 
+			}
 		}
-	});*/
+	});
+	$("#editRoleModal").modal("hide");
 }
