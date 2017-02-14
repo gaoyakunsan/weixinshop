@@ -491,8 +491,12 @@
 						</a> <b class="arrow"></b></li>
 
 						<li class=""><a href="#" class="dropdown-toggle"
-							menu-url="home/homePage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 首页管理
+							menu-url="role/rolePage.do"> <i
+								class="menu-icon fa fa-caret-right"></i> 角色管理
+						</a> <b class="arrow"></b></li>
+						<li class=""><a href="#" class="dropdown-toggle"
+							menu-url="privilege/privilegePage.do"> <i
+								class="menu-icon fa fa-caret-right"></i> 权限管理
 						</a> <b class="arrow"></b></li>
 
 					</ul>

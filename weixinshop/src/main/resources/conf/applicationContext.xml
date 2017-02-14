@@ -75,5 +75,7 @@
 		/> <bean id="mapOrderProductService" class="service.impl.MapOrderProductServiceImpl" 
 		/> <bean id="homePageService" class="service.impl.HomePageServiceImpl" /> -->
 		<bean id="adminService" class="service.impl.AdminServiceImpl" />
+		<bean id="roleService" class="service.impl.RoleServiceImpl" />
+		
 
 </beans>  

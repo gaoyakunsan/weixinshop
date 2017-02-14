@@ -15,11 +15,11 @@ public class MapAdminRole extends BaseEntity {
 
     private Integer roleId;
 
-    private Byte isDeleted;
+    private Byte isdelete;
 
-    private Date createdTime;
+    private Date createTime;
 
-    private Date updatedTime;
+    private Date lastModifiedTime;
 
     
     public Integer getMapAdminRoleId() {
@@ -46,27 +46,28 @@ public class MapAdminRole extends BaseEntity {
         this.roleId = roleId;
     }
 
-    public Byte getIsDeleted() {
-        return isDeleted;
-    }
+	public Byte getIsdelete() {
+		return isdelete;
+	}
 
-    public void setIsDeleted(Byte isDeleted) {
-        this.isDeleted = isDeleted;
-    }
+	public void setIsdelete(Byte isdelete) {
+		this.isdelete = isdelete;
+	}
 
-    public Date getCreatedTime() {
-        return createdTime;
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
-    }
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
-    public Date getUpdatedTime() {
-        return updatedTime;
-    }
+	public Date getLastModifiedTime() {
+		return lastModifiedTime;
+	}
 
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
-    }
+	public void setLastModifiedTime(Date lastModifiedTime) {
+		this.lastModifiedTime = lastModifiedTime;
+	}
+    
 }

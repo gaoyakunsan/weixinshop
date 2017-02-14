@@ -6,112 +6,40 @@
     <result column="display_name" property="displayName" jdbcType="VARCHAR" />
     <result column="role_name" property="roleName" jdbcType="VARCHAR" />
     <result column="role_code" property="roleCode" jdbcType="VARCHAR" />
-    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
-    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
-    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_modified_time" property="lastModifiedTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    role_id, display_name, role_name, role_code, is_deleted, created_time, updated_time
+    role_id, display_name, role_name, role_code, isdelete, create_time, last_modified_time
   </sql>
-  <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.RoleKey" >
-    select 
+  
+  <select id="selectRoleByParams" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+  	select 
     <include refid="Base_Column_List" />
-    from role
-    where role_id = #{roleId,jdbcType=INTEGER}
+	    from role
+	    where isdelete = 0
+	  <if test="roleId != null">
+        and role_id = #{roleId}
+      </if>
+      <if test="displayName != null">
+        and display_name LIKE CONCAT('%',#{displayName},'%') 
+      </if>
+      <if test="roleName != null">
+        AND role_name = #{roleName}
+      </if>
+      <if test="roleCode != null"> 
+        and role_code  = #{roleCode}
+      </if>
+      <if test="beginTime != null ">
+          AND create_time > #{beginTime} 
+      </if>
+      <if test="endTime != null ">
+          <![CDATA[AND create_time <  #{endTime} ]]>
+      </if>
+      <if test="sidx != null">
+        order by ${sidx} ${sord}
+      </if>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="po.RoleKey" >
-    delete from role
-    where role_id = #{roleId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="po.Role" >
-    insert into role (role_id, display_name, role_name, 
-      role_code, is_deleted, created_time, 
-      updated_time)
-    values (#{roleId,jdbcType=INTEGER}, #{displayName,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, 
-      #{roleCode,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BIT}, #{createdTime,jdbcType=TIMESTAMP}, 
-      #{updatedTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="po.Role" >
-    insert into role
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="roleId != null" >
-        role_id,
-      </if>
-      <if test="displayName != null" >
-        display_name,
-      </if>
-      <if test="roleName != null" >
-        role_name,
-      </if>
-      <if test="roleCode != null" >
-        role_code,
-      </if>
-      <if test="isDeleted != null" >
-        is_deleted,
-      </if>
-      <if test="createdTime != null" >
-        created_time,
-      </if>
-      <if test="updatedTime != null" >
-        updated_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="roleId != null" >
-        #{roleId,jdbcType=INTEGER},
-      </if>
-      <if test="displayName != null" >
-        #{displayName,jdbcType=VARCHAR},
-      </if>
-      <if test="roleName != null" >
-        #{roleName,jdbcType=VARCHAR},
-      </if>
-      <if test="roleCode != null" >
-        #{roleCode,jdbcType=VARCHAR},
-      </if>
-      <if test="isDeleted != null" >
-        #{isDeleted,jdbcType=BIT},
-      </if>
-      <if test="createdTime != null" >
-        #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedTime != null" >
-        #{updatedTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="po.Role" >
-    update role
-    <set >
-      <if test="displayName != null" >
-        display_name = #{displayName,jdbcType=VARCHAR},
-      </if>
-      <if test="roleName != null" >
-        role_name = #{roleName,jdbcType=VARCHAR},
-      </if>
-      <if test="roleCode != null" >
-        role_code = #{roleCode,jdbcType=VARCHAR},
-      </if>
-      <if test="isDeleted != null" >
-        is_deleted = #{isDeleted,jdbcType=BIT},
-      </if>
-      <if test="createdTime != null" >
-        created_time = #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedTime != null" >
-        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where role_id = #{roleId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="po.Role" >
-    update role
-    set display_name = #{displayName,jdbcType=VARCHAR},
-      role_name = #{roleName,jdbcType=VARCHAR},
-      role_code = #{roleCode,jdbcType=VARCHAR},
-      is_deleted = #{isDeleted,jdbcType=BIT},
-      created_time = #{createdTime,jdbcType=TIMESTAMP},
-      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
-    where role_id = #{roleId,jdbcType=INTEGER}
-  </update> -->
+  
 </mapper>

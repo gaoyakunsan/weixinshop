@@ -17,11 +17,11 @@ public class Role extends BaseEntity {
 
     private String roleCode;
 
-    private Boolean isDeleted;
+    private Boolean isdelete;
 
-    private Date createdTime;
+    private Date createTime;
 
-    private Date updatedTime;
+    private Date lastModifiedTime;
 
     
     public Integer getRoleId() {
@@ -56,27 +56,28 @@ public class Role extends BaseEntity {
         this.roleCode = roleCode == null ? null : roleCode.trim();
     }
 
-    public Boolean getIsDeleted() {
-        return isDeleted;
-    }
+	public Boolean getIsdelete() {
+		return isdelete;
+	}
 
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
+	public void setIsdelete(Boolean isdelete) {
+		this.isdelete = isdelete;
+	}
 
-    public Date getCreatedTime() {
-        return createdTime;
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
-    }
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
-    public Date getUpdatedTime() {
-        return updatedTime;
-    }
+	public Date getLastModifiedTime() {
+		return lastModifiedTime;
+	}
 
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
-    }
+	public void setLastModifiedTime(Date lastModifiedTime) {
+		this.lastModifiedTime = lastModifiedTime;
+	}
+    
 }
