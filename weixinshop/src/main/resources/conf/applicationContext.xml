@@ -58,24 +58,6 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="Mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-
 	</bean>
-
-	<!-- User service -->
-	<!-- 通过依赖注入将UserSerivceImpl实现类注入userService @Autowired:首先按照类型去寻找当前的bean, 
-		如果找不到的话，那就以名称装配。 如果UserSerivce有多个相同类型的实例的话,就会报错了 -->
-	<!-- <bean id="userService" class="service.impl.UserServiceImpl" /> <bean 
-		id="studentService" class="service.impl.StudentServiceImpl"/> <bean id="adminService" 
-		class="service.impl.AdminServiceImpl" /> <bean id="classifyService" class="service.impl.ClassifyServiceImpl" 
-		/> <bean id="productService" class="service.impl.ProductServiceImpl" /> <bean 
-		id="cartService" class="service.impl.CartServiceImpl" /> <bean id="orderService" 
-		class="service.impl.OrderServiceImpl" /> <bean id="reportService" class="service.impl.ReportServiceImpl" 
-		/> <bean id="imageService" class="service.impl.ImageServiceImpl" /> <bean 
-		id="MapProductCartService" class="service.impl.MapProductCartServiceImpl" 
-		/> <bean id="mapOrderProductService" class="service.impl.MapOrderProductServiceImpl" 
-		/> <bean id="homePageService" class="service.impl.HomePageServiceImpl" /> -->
-		<bean id="adminService" class="service.impl.AdminServiceImpl" />
-		<bean id="roleService" class="service.impl.RoleServiceImpl" />
-		
 
 </beans>  

@@ -19,4 +19,5 @@ public interface RoleMapper extends Mapper<Role> {
     int updateByPrimaryKey(Role record);*/
 	
 	List<Role> selectRoleByParams(Map<String, Object> map);
+	void deleteRoleByIds(List<Integer> ids);
 }

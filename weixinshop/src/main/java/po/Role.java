@@ -2,13 +2,17 @@ package po;
 
 import java.util.Date;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Table(name ="role")
 public class Role extends BaseEntity {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8362067329964346248L;
-
+	
+	@Id
 	private Integer roleId;
 	
     private String displayName;

@@ -1,6 +1,7 @@
 package controler.role;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.github.pagehelper.PageInfo;
-
-import controler.base.BaseController;
-import po.Admin;
 import po.ResModel;
 import po.Role;
 import service.RoleService;
 import utils.ST;
+
+import com.github.pagehelper.PageInfo;
+
+import controler.base.BaseController;
 
 @Controller
 @RequestMapping(value="/role")
@@ -44,10 +45,10 @@ public class RoleControler extends BaseController {
 	
 	@RequestMapping(value = "/selectRole")
     @ResponseBody
-    public PageInfo selectAdminByParams(HttpServletRequest request, HttpServletResponse response)throws Exception{
+    public PageInfo<Role> selectAdminByParams(HttpServletRequest request, HttpServletResponse response)throws Exception{
 	 	String sidx = getParam("sidx");// 排序字段;
         String sord = getParam("sord");// 升序降序;
-        PageInfo pageInfo = new PageInfo();
+        PageInfo<Role> pageInfo = new PageInfo<Role>();
         try {
         	int oneRecord = Integer.valueOf(getParam("rows"));// 一页几行
             int pageNo = Integer.valueOf(getParam("page"));// 第几页
@@ -66,7 +67,7 @@ public class RoleControler extends BaseController {
             	map.put("endTime", endTime + " 59:59:59");
             }
             map.put("displayName", displayName);
-            pageInfo= (PageInfo)roleService.selectRoleByParams(map);
+            pageInfo= (PageInfo<Role>)roleService.selectRoleByParams(map);
 		} catch (Exception e) {
 			logger.error("selectAdmin error:" + e);
 		}
@@ -121,5 +122,19 @@ public class RoleControler extends BaseController {
 		}
 		resModel.setSuccess(bl);
 		return resModel;
+	}
+	
+	@RequestMapping(value="/deleteRole")
+	@ResponseBody
+	public boolean deleteRole(HttpServletRequest request,HttpServletResponse response){
+		String roleIds = getParam("roleIds");
+		try {
+			List<Integer> list = ST.StringToList(roleIds);
+			roleService.deleteRoleByIds(list);
+		} catch (Exception e) {
+			logger.error("deleteRole error:" + e);
+			return false;
+		}
+		return true;
 	}
 }

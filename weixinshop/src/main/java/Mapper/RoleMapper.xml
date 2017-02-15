@@ -41,5 +41,11 @@
         order by ${sidx} ${sord}
       </if>
   </select>
+  <update id="deleteRoleByIds" parameterType="java.util.List">
+	    UPDATE ROLE R SET R.ISDELETE = 1 WHERE R.ROLE_ID IN
+	    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+		  #{item}  
+		</foreach>  
+  </update>
   
 </mapper>

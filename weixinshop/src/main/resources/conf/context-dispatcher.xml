@@ -29,6 +29,7 @@
 
 	<!-- 使用注解的包，包括子集 -->
 	<context:component-scan base-package="controler" />
+	<context:component-scan base-package="service" />
 	<!-- 通过注解，把URL映射到Controller上，该标签默认注册DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter -->
 	<mvc:annotation-driven />
 

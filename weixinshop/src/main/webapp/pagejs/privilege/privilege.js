@@ -1,4 +1,4 @@
-function initRoleManager(){
+function initPrivilegeManager(){
 	
 	
 	//$("#addAdminModal").draggable();
@@ -21,16 +21,17 @@ function initRoleManager(){
     })
 	jQuery(grid_selector).jqGrid({
 		
-		url: webroot + "role/selectRole.do",
+		url: webroot + "privilege/selectPrivilege.do",
 		mtype: 'post',
 		datatype: "json",
 		height: 320,
-		colNames:['角色ID','角色名称','角色英文名称','角色代码','创建时间','最后更新时间'],
+		colNames:['权限ID','权限名称','权限英文名称','权限代码','URL','创建时间','最后更新时间'],
 		colModel:[
-          	{name:'roleId',index:'role_id', width:80, sorttype:"int", editable: true},
+          	{name:'privilegeId',index:'privilege_id', width:80, sorttype:"int", editable: true},
           	{name:'displayName',index:'display_name',width:80, editable:true},
-			{name:'roleName',index:'role_name', width:80, sorttype:"int", editable: true,sortable:false},
-			{name:'roleCode',index:'role_code',width:80, editable:true},
+			{name:'privilegeName',index:'privilege_name', width:80, sorttype:"int", editable: true,sortable:false},
+			{name:'privilegeCode',index:'privilege_code',width:80, editable:true},
+			{name:'url',index:'url',width:80, editable:true},
 			{name:'createTime',index:'create_time',width:80, editable:true,formatter:formatDate},
 			{name:'lastModifiedTime',index:'last_modified_time',width:80,formatter:formatDate}
 		], 
@@ -200,9 +201,9 @@ function initRoleManager(){
 
 
 //查询
-function queryRole(){
+function queryPrivilege(){
 	var data = $("#queryRoleForm").serialize();
-	var url = webroot + "role/selectRole.do";
+	var url = webroot + "privilege/selectPrivilege.do";
 	$("#grid-table").jqGrid('setGridParam',{ 
         url: url + "?" + data, 
         //postData:jsonData, 
@@ -210,8 +211,8 @@ function queryRole(){
         mtype:"post"
     }).trigger("reloadGrid"); //重新载入 
 }
-//删除角色
-function deleteRole(){
+//删除权限
+function deletePrivilege(){
 	var selectedIds = $("#grid-table").jqGrid("getGridParam", "selarrrow");//选择多行记录
 	if(selectedIds.length < 1){
 		alertmsg("warning", "请至少选中一行!");
@@ -220,18 +221,18 @@ function deleteRole(){
 	var ids = "";
 	for(var i = 0; i < selectedIds.length; i ++){
 		var rowData = $('#grid-table').getRowData(selectedIds[i]);//获取选中行的记录
-		var roleId = rowData.roleId;
-		ids =ids + roleId + ",";
+		var privilegeId = rowData.privilegeId;
+		ids =ids + privilegeId + ",";
 	}
     Lobibox.confirm({ 
-        title:"删除角色",      //提示框标题 
+        title:"删除权限",      //提示框标题 
         msg: "是否确认删除",   //提示框文本内容 
         callback: function ($this, type, ev) {               //回调函数 
             if (type === 'yes') { 
             	$.ajax({
             		type:"post",
-            		url:webroot+"role/deleteRole.do",
-            		data:{"roleIds":ids},
+            		url:webroot+"privilege/deletePrivilege.do",
+            		data:{"privilegeIds":ids},
             		success:function(data){
             			//删除成功重新加载jqGrid
             			$("#grid-table").jqGrid('setGridParam',{ 
@@ -247,25 +248,25 @@ function deleteRole(){
      });
 	
 }
-//添加角色
-function addRole(){
+//添加权限
+function addPrivilege(){
 	//再次打开model之前清空上次的操作记录
-	$("#addRoleModal :input").val("");
-	$("#addRoleModal").modal("show");
+	$("#addPrivilegeModal :input").val("");
+	$("#addPrivilegeModal").modal("show");
 }
-//保存角色
-function saveRole(){
-	//保存角色信息
-	var data = getParams("#addRoleModal");
+//保存权限
+function savePrivilege(){
+	//保存权限信息
+	var data = getParams("#addPrivilegeModal");
 	$.ajax({
 		type: "post",
-		url: webroot + "role/saveRole.do",
+		url: webroot + "privilege/savePrivilege.do",
 		data: data,
 		success: function(msg){
 			if(msg.success){
-				alertmsg("success", "新增角色成功!");
+				alertmsg("success", "新增权限成功!");
 				var data = $("form").serialize();
-				var url = webroot + "role/selectRole.do";
+				var url = webroot + "privilege/selectPrivilege.do";selectPrvilege
 				$("#grid-table").jqGrid('setGridParam',{ 
 			        url: url + "?" + data, 
 			        page:1,
@@ -274,41 +275,43 @@ function saveRole(){
 			}
 		}
 	});
-	$("#addRoleModal").modal("hide");
+	$("#addPrivilegeModal").modal("hide");
 }
-//修改角色
-function editRole(){
+//修改权限
+function editPrivilege(){
 	var lanId = $("#grid-table").jqGrid("getGridParam","selrow");
 	var rowData = $('#grid-table').getRowData(lanId);//获取选中行的记录 
-	var roleId = rowData.roleId;
-	if(!isNoEmpty(roleId)){
+	var privilegeId = rowData.privilegeId;
+	if(!isNoEmpty(privilegeId)){
 		alertmsg("warning","请至少选中一行 !");
 		return;
 	}
 	$.ajax({
 		type: "post",
-		url: webroot + "role/selectRoleByRoleId.do",
-		data: {roleId: roleId},
+		url: webroot + "privilege/selectByPrivilegeId.do",
+		data: {privilegeId: privilegeId},
 		success: function(msg){
-			$("#editRoleModal input[name='roleId']").val(msg.roleId);
-			$("#editRoleModal input[name='displayName']").val(msg.displayName);
-			$("#editRoleModal input[name='roleCode']").val(msg.roleCode);
-			$("#editRoleModal").modal("show");
+			$("#editPrivilegeModal input[name='privilegeId']").val(msg.privilegeId);
+			$("#editPrivilegeModal input[name='displayName']").val(msg.displayName);
+			$("#editPrivilegeModal input[name='privilegeCode']").val(msg.privilegeCode);
+			$("#editPrivilegeModal input[name='url']").val(msg.url);
+			$("#editPrivilegeModal input[name='parentId']").val(msg.parentId);
+			$("#editPrivilegeModal").modal("show");
 		}
 	});
 }
-//修改角色 
-function editAndSaveRole(){
-	var data = getParams("#editRoleform");
+//修改权限 
+function editAndSavePrivilege(){
+	var data = getParams("#editPrivilegeform");
 	$.ajax({
 		type: "post",
-		url: webroot + "role/updateRole.do",
+		url: webroot + "privilege/updatePrivilege.do",
 		data: data,
 		success: function(msg){
 			if(msg.success){
-				alertmsg("success", "修改角色成功!");
+				alertmsg("success", "修改权限成功!");
 				var data = $("form").serialize();
-				var url = webroot + "role/selectRole.do";
+				var url = webroot + "privilege/selectPrivilege.do";
 				$("#grid-table").jqGrid('setGridParam',{ 
 			        url: url + "?" + data, 
 			        page:1,
@@ -317,5 +320,5 @@ function editAndSaveRole(){
 			}
 		}
 	});
-	$("#editRoleModal").modal("hide");
+	$("#editPrivilegeModal").modal("hide");
 }

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -11,16 +13,17 @@ import com.github.pagehelper.PageInfo;
 import Mapper.RoleMapper;
 import po.Role;
 import service.RoleService;
-
+@Transactional
+@Service
 public class RoleServiceImpl implements RoleService {
 	
 	@Autowired
 	private RoleMapper roleMapper;
 
-	public PageInfo selectRoleByParams(Map<String, Object> map) throws Exception {
+	public PageInfo<Role> selectRoleByParams(Map<String, Object> map) throws Exception {
 		PageHelper.startPage((Integer)map.get("pageNo"),(Integer)map.get("rowCount"));
 		List<Role> list = roleMapper.selectRoleByParams(map);
-	    PageInfo page = new PageInfo(list);
+	    PageInfo<Role> page = new PageInfo<Role>(list);
 		return page;
 	}
 	
@@ -42,6 +45,15 @@ public class RoleServiceImpl implements RoleService {
 	public boolean updateRole(Role role) throws Exception {
 		try {
 			roleMapper.updateByPrimaryKeySelective(role);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean deleteRoleByIds(List<Integer> ids) throws Exception {
+		try {
+			roleMapper.deleteRoleByIds(ids);
 		} catch (Exception e) {
 			return false;
 		}

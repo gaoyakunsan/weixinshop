@@ -2,6 +2,9 @@ package po;
 
 import java.util.Date;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Table(name ="privilege")
 public class Privilege extends BaseEntity {
 	
 	/**
@@ -9,6 +12,7 @@ public class Privilege extends BaseEntity {
 	 */
 	private static final long serialVersionUID = -486649543453142095L;
 
+	@Id
 	private Integer privilegeId;
 	
     private String displayName;
