@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS `map_admin_role`;
 
 CREATE TABLE `map_admin_role` (
   `map_admin_role_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   `isdelete` tinyint(4) NOT NULL DEFAULT '0',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -77,17 +77,19 @@ DROP TABLE IF EXISTS `privilege`;
 CREATE TABLE `privilege` (
   `privilege_id` int(11) NOT NULL AUTO_INCREMENT,
   `display_name` varchar(50) NOT NULL,
-  `privilege_name` varchar(50) NOT NULL,
-  `privilege_code` varchar(50) NOT NULL,
+  `privilege_name` varchar(50) DEFAULT NULL,
+  `privilege_code` varchar(50) DEFAULT NULL,
   `url` varchar(500) NOT NULL,
   `parent_id` int(11) NOT NULL,
   `isdelete` tinyint(1) NOT NULL DEFAULT '0',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_modified_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`privilege_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `privilege` */
+
+insert  into `privilege`(`privilege_id`,`display_name`,`privilege_name`,`privilege_code`,`url`,`parent_id`,`isdelete`,`create_time`,`last_modified_time`) values (1,'11',NULL,NULL,'11',11,0,'2017-02-15 17:55:01','2017-02-15 17:55:01'),(2,'567567567',NULL,'','11',11,1,'2017-02-15 17:56:39','2017-02-15 19:19:14');
 
 /*Table structure for table `role` */
 
@@ -102,11 +104,11 @@ CREATE TABLE `role` (
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_modified_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `role` */
 
-insert  into `role`(`role_id`,`display_name`,`role_name`,`role_code`,`isdelete`,`create_time`,`last_modified_time`) values (1,'dsaf',NULL,'dasf',0,'2017-02-14 18:44:12','2017-02-14 18:44:12');
+insert  into `role`(`role_id`,`display_name`,`role_name`,`role_code`,`isdelete`,`create_time`,`last_modified_time`) values (3,'系统管理员',NULL,'001',0,'2017-02-16 17:04:06','2017-02-16 17:04:06');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

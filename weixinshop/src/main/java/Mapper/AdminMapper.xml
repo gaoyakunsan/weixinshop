@@ -13,6 +13,13 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="admin_pid" property="adminPid" jdbcType="INTEGER" />
   </resultMap>
+  
+  <resultMap type="AdminSetRoleDTO" id="AdminSetRoleMap">
+      <result column="role_id" property="roleId" />
+      <result column="role_display_name" property="roleDisplayName" />
+      <result column="id" property="id" />
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     admin_id, username, password, realname, email, phone, isdelete, last_modified_time, create_time as create_time, 
     admin_pid
@@ -52,141 +59,9 @@
        #{item}  
      </foreach>  
   </update>
-  <!--  <sql id="Base_Column_List" >
-    id, username, password, realname, email, phone, isdelete, last_modified_time, create_time, 
-    admin_pid
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from admin
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from admin
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="po.Admin" >
-    insert into admin (id, username, password, 
-      realname, email, phone, 
-      isdelete, last_modified_time, create_time, 
-      admin_pid)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{realname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{isdelete,jdbcType=BIT}, #{lastModifiedTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{adminPid,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="po.Admin" >
-    insert into admin
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="username != null" >
-        username,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="realname != null" >
-        realname,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="phone != null" >
-        phone,
-      </if>
-      <if test="isdelete != null" >
-        isdelete,
-      </if>
-      <if test="lastModifiedTime != null" >
-        last_modified_time,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="adminPid != null" >
-        admin_pid,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="realname != null" >
-        #{realname,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="isdelete != null" >
-        #{isdelete,jdbcType=BIT},
-      </if>
-      <if test="lastModifiedTime != null" >
-        #{lastModifiedTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="adminPid != null" >
-        #{adminPid,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="po.Admin" >
-    update admin
-    <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="realname != null" >
-        realname = #{realname,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null" >
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="isdelete != null" >
-        isdelete = #{isdelete,jdbcType=BIT},
-      </if>
-      <if test="lastModifiedTime != null" >
-        last_modified_time = #{lastModifiedTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="adminPid != null" >
-        admin_pid = #{adminPid,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="po.Admin" >
-    update admin
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      realname = #{realname,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      isdelete = #{isdelete,jdbcType=BIT},
-      last_modified_time = #{lastModifiedTime,jdbcType=TIMESTAMP},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      admin_pid = #{adminPid,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>  -->
+  <select id="adminSetRole" parameterType="java.lang.Integer" resultMap="AdminSetRoleMap">
+        SELECT T1.ROLE_ID AS ROLE_ID ,T1.DISPLAY_NAME AS ROLE_DISPLAY_NAME,IFNULL (T2.ROLE_ID,0) AS ID FROM ROLE T1
+        LEFT JOIN MAP_ADMIN_ROLE T2 ON T1.ROLE_ID= T2.ADMIN_ID 
+        WHERE T1.isdelete = 0 AND T2.admin_ID = #{id}  ORDER BY T1.role_id
+    </select>
 </mapper>

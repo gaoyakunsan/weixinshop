@@ -2,17 +2,19 @@ package po;
 
 import java.util.Date;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author yakungao
  *
  */
+@Table(name = "map_role_privilege")
 public class MapRolePrivilege extends BaseEntity {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3092507639488764854L;
 
+	@Id
 	private Integer mapRolePrivilegeId;
 	
     private Integer roleId;

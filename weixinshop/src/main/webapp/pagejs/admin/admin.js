@@ -387,7 +387,7 @@ function deleteAdmin(){
 	var ids = "";
 	for(var i = 0; i < selectedIds.length; i ++){
 		var rowData = $('#grid-table').getRowData(selectedIds[i]);//获取选中行的记录
-		var adminId = rowData.id;
+		var adminId = rowData.adminId;
 		ids =ids + adminId + ",";
 	}
     Lobibox.confirm({ 
@@ -468,7 +468,7 @@ function saveAdmin(){
 function editAdmin(){
 	var lanId = $("#grid-table").jqGrid("getGridParam","selrow");
 	var rowData = $('#grid-table').getRowData(lanId);//获取选中行的记录 
-	var id = rowData.id;
+	var id = rowData.adminId;
 	if(!isNoEmpty(id)){
 		alertmsg("warning","请至少选中一行 !");
 		return;
@@ -478,7 +478,7 @@ function editAdmin(){
 		url: webroot + "admin/selectAdminByAdminId.do",
 		data: {adminId: id},
 		success: function(msg){
-			$("#editAdminModal input[name='id']").val(msg.id);
+			$("#editAdminModal input[name='id']").val(msg.adminId);
 			$("#editAdminModal input[name='username']").val(msg.username);
 			$("#editAdminModal input[name='realname']").val(msg.realname);
 			$("#editAdminModal input[name='password']").val(msg.password);
@@ -497,38 +497,52 @@ function editAndSaveAdmin(){
 	if(!($('#editAdminform').valid())){
 		return;
 	}
-	//验证是否已存在此用户名
-	//var name = $("#editAdminform input[name='username']").val();
-	/*$.ajax({
+	//保存用户信息
+	var data = getParams("#editAdminform");
+	$.ajax({
 		type: "post",
-		url: webroot + "admin/validateAdmin.do",
-		data: {name: name},
+		url: webroot + "admin/updateAdmin.do",
+		data: data,
 		success: function(msg){
 			if(msg.success){
-				alertmsg("warning","用户名已存在!");
-				return;
-			}else{*/
-				//保存用户信息
-				var data = getParams("#editAdminform");
-				$.ajax({
-					type: "post",
-					url: webroot + "admin/updateAdmin.do",
-					data: data,
-					success: function(msg){
-						if(msg.success){
-							alertmsg("success", "修改用户成功!");
-							var data = $("form").serialize();
-							var url = webroot + "admin/selectAdmin.do";
-							$("#grid-table").jqGrid('setGridParam',{ 
-						        url: url + "?" + data, 
-						        page:1,
-						        mtype:"post"
-						    }).trigger("reloadGrid"); //重新载入 
-						}
-					}
-				});
-				$("#editAdminModal").modal("hide");
-		/*	}
+				alertmsg("success", "修改用户成功!");
+				var data = $("form").serialize();
+				var url = webroot + "admin/selectAdmin.do";
+				$("#grid-table").jqGrid('setGridParam',{ 
+			        url: url + "?" + data, 
+			        page:1,
+			        mtype:"post"
+			    }).trigger("reloadGrid"); //重新载入 
+			}
 		}
-	});*/
+	});
+	$("#editAdminModal").modal("hide");
+}
+//用户设置角色
+function adminSetRole(){
+	var lanId = $("#grid-table").jqGrid("getGridParam","selrow");
+	var rowData = $('#grid-table').getRowData(lanId);//获取选中行的记录 
+	var adminId = rowData.adminId;
+	if(!isNoEmpty(adminId)){
+		alertmsg("warning","请至少选中一行 !");
+		return;
+	}
+	//清空之前数据
+	//cleanParams("#adminSetRoleModal");
+	$("#adminSetRoleModalAdminId").val(adminId);
+	$.ajax({
+		type: "post",
+		url: webroot + "admin/adminSetRole.do",
+		data: {adminId:adminId},
+		success: function(msg){
+			if(msg.success){
+				
+			}
+		}
+	});
+	$("#adminSetRoleModal").modal("show");
+}
+
+function saveAdminSetRole(){
+	
 }

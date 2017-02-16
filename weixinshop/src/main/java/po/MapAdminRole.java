@@ -2,16 +2,18 @@ package po;
 
 import java.util.Date;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name ="map_admin_role")
 public class MapAdminRole extends BaseEntity {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -8932097570910475983L;
 
+	@Id
 	private Integer mapAdminRoleId;
 	 
-    private Integer userId;
+    private Integer adminId;
 
     private Integer roleId;
 
@@ -30,15 +32,15 @@ public class MapAdminRole extends BaseEntity {
         this.mapAdminRoleId = mapAdminRoleId;
     }
     
-    public Integer getUserId() {
-        return userId;
-    }
+    public Integer getAdminId() {
+		return adminId;
+	}
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	public void setAdminId(Integer adminId) {
+		this.adminId = adminId;
+	}
 
-    public Integer getRoleId() {
+	public Integer getRoleId() {
         return roleId;
     }
 

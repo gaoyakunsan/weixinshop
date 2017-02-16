@@ -98,6 +98,7 @@
 	<div id="actions-before" class="btn-group">	
         <button type="button" onclick="addAdmin()" class="btn-link"><i class="glyphicon glyphicon-plus"></i> &nbsp;添加</button>
         <button type="button" onclick="editAdmin()" class="btn-link"><i class="glyphicon glyphicon-edit"></i> &nbsp;修改</button>
+        <button type="button" onclick="adminSetRole()" class="btn-link"><i class="glyphicon glyphicon-edit"></i> &nbsp;设置角色</button>
         <button type="button" onclick="deleteAdmin()" class="btn-link"><i class="glyphicon glyphicon-remove"></i> &nbsp;删除用户</button>
     </div>
 	<div class="row">
@@ -276,6 +277,62 @@
     </div><!-- /.modal -->
 </div>
 <!-- 修改用户model end -->
+<!-- 用户设置角色model start -->
+<div class="modal fade" id="adminSetRoleModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+             <div class="modal-header">
+             	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			    <h4 class="modal-title" >用户设置角色</h4>
+		     </div>
+		     <div class="modal-body">
+            	<form class="form-horizontal " id="adminSetRoleFrom" >
+            		<input type="hidden" id="adminSetRoleModalAdminId"/>
+            		<div class="checkbox">
+						<label>
+							<input name="form-field-checkbox" type="checkbox" class="ace" />
+							<span class="lbl"> choice 1</span>
+						</label>
+						<label>
+							<input name="form-field-checkbox" type="checkbox" class="ace" />
+							<span class="lbl"> choice 1</span>
+						</label>
+						<label>
+							<input name="form-field-checkbox" type="checkbox" class="ace" />
+							<span class="lbl"> choice 1</span>
+						</label>
+						<label>
+							<input name="form-field-checkbox" type="checkbox" class="ace" />
+							<span class="lbl"> choice 1</span>
+						</label>
+						<label>
+							<input name="form-field-checkbox" type="checkbox" class="ace" />
+							<span class="lbl"> choice 1</span>
+						</label>
+						
+						<label>
+							<input name="form-field-checkbox" type="checkbox" class="ace" />
+							<span class="lbl"> choice 1</span>
+						</label><label>
+							<input name="form-field-checkbox" type="checkbox" class="ace" />
+							<span class="lbl"> choice 1</span>
+						</label>
+						
+					</div>
+				</form>				     
+		     </div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-md" onclick="saveAdminSetRole()">
+			    	保存
+			    </button>
+			    <button type="button" class="btn btn-md" id="modalClose" data-dismiss="modal">
+			    	关闭
+			    </button>
+			</div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 用户设置角色model end -->
 <script type="text/javascript">
 
 jQuery(function($) {

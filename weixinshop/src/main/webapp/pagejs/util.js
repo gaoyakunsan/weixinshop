@@ -50,6 +50,9 @@ var getValuesByAttr = function(selector, attr) {
 	console.log(data);
 	return (data||'').toString();;
 };
+var cleanParams = function (selector){
+	$("input", selector).val("");
+}
 //去除字符串空格
 /*去左空格*/
 function ltrim(s) {

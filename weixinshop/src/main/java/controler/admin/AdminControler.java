@@ -1,5 +1,6 @@
 package controler.admin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import utils.ST;
 import com.github.pagehelper.PageInfo;
 
 import controler.base.BaseController;
+import dto.AdminSetRoleDTO;
 
 @Controller
 @RequestMapping(value="/admin")
@@ -160,5 +162,15 @@ public class AdminControler extends BaseController{
 		return resModel;
 	}
 	
+	@RequestMapping(value = "/adminSetRole")
+    public List<AdminSetRoleDTO> adminSetRole(HttpServletRequest request,HttpServletResponse response) {
+		 List<AdminSetRoleDTO> list = new ArrayList<AdminSetRoleDTO>();
+		String adminId = getParam("adminId");
+		if(ST.isNull(adminId)){
+			return list;
+		}
+        list = adminService.adminSetRole(Integer.valueOf(adminId));
+        return list;
+    }
 	
 }

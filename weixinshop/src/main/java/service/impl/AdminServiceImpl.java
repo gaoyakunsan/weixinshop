@@ -19,6 +19,8 @@ import Mapper.AdminMapper;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
+import dto.AdminSetRoleDTO;
 @Transactional
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -102,6 +104,9 @@ public class AdminServiceImpl implements AdminService {
 		admin.setIsdelete(false);
 		admin.setUsername(name);
 		return adminMapper.select(admin);
+	}
+	public List<AdminSetRoleDTO> adminSetRole(Integer id){
+		return adminMapper.adminSetRole(id);
 	}
 
 }

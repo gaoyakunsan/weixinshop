@@ -3,9 +3,11 @@ package service;
 import java.util.List;
 import java.util.Map;
 
+import po.Admin;
+
 import com.github.pagehelper.PageInfo;
 
-import po.Admin;
+import dto.AdminSetRoleDTO;
 
 public interface AdminService{
 	
@@ -24,4 +26,6 @@ public interface AdminService{
 	public Admin selectAdminByAdminId(Map<String,Object> map);
 
 	public List<Admin> validateAdmin(String name);
+	
+	public List<AdminSetRoleDTO> adminSetRole(Integer id);
 }

@@ -4,6 +4,7 @@
 	<!-- package alias -->
 	<typeAliases>
 		<package name="po" />
+		<package name="dto" />
 	</typeAliases>
 	<plugins>
 

@@ -3,13 +3,13 @@
 <mapper namespace="Mapper.MapAdminRoleMapper" >
   <resultMap id="BaseResultMap" type="po.MapAdminRole" >
     <id column="map_admin_role_id" property="mapAdminRoleId" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
     <result column="role_id" property="roleId" jdbcType="INTEGER" />
     <result column="isdelete" property="isdelete" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="last_modified_time" property="lastModifiedTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    map_admin_role_id, user_id, role_id, isdelete, create_time, last_modified_time
+    map_admin_role_id, admin_id, role_id, isdelete, create_time, last_modified_time
   </sql>
 </mapper>
