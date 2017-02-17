@@ -163,14 +163,32 @@ public class AdminControler extends BaseController{
 	}
 	
 	@RequestMapping(value = "/adminSetRole")
+	@ResponseBody
     public List<AdminSetRoleDTO> adminSetRole(HttpServletRequest request,HttpServletResponse response) {
-		 List<AdminSetRoleDTO> list = new ArrayList<AdminSetRoleDTO>();
+		List<AdminSetRoleDTO> list = new ArrayList<AdminSetRoleDTO>();
 		String adminId = getParam("adminId");
 		if(ST.isNull(adminId)){
 			return list;
 		}
         list = adminService.adminSetRole(Integer.valueOf(adminId));
         return list;
+    }
+	
+	@RequestMapping(value = "/saveAdminSetRole")
+	@ResponseBody
+    public ResModel saveAdminSetRole(HttpServletRequest request,HttpServletResponse response) {
+		ResModel resModel = new ResModel();
+		String adminId = getParam("adminId");
+		String roleIds = getParam("roleIds");
+		if(ST.isNull(adminId) || ST.isNull(roleIds)){
+			resModel.setSuccess(false);
+			return resModel;
+		}
+		//清空以前的数据
+		
+		boolean bl = adminService.saveAdminSetRole(Integer.valueOf(adminId), roleIds);
+		resModel.setSuccess(bl);
+        return resModel;
     }
 	
 }

@@ -288,36 +288,7 @@
 		     <div class="modal-body">
             	<form class="form-horizontal " id="adminSetRoleFrom" >
             		<input type="hidden" id="adminSetRoleModalAdminId"/>
-            		<div class="checkbox">
-						<label>
-							<input name="form-field-checkbox" type="checkbox" class="ace" />
-							<span class="lbl"> choice 1</span>
-						</label>
-						<label>
-							<input name="form-field-checkbox" type="checkbox" class="ace" />
-							<span class="lbl"> choice 1</span>
-						</label>
-						<label>
-							<input name="form-field-checkbox" type="checkbox" class="ace" />
-							<span class="lbl"> choice 1</span>
-						</label>
-						<label>
-							<input name="form-field-checkbox" type="checkbox" class="ace" />
-							<span class="lbl"> choice 1</span>
-						</label>
-						<label>
-							<input name="form-field-checkbox" type="checkbox" class="ace" />
-							<span class="lbl"> choice 1</span>
-						</label>
-						
-						<label>
-							<input name="form-field-checkbox" type="checkbox" class="ace" />
-							<span class="lbl"> choice 1</span>
-						</label><label>
-							<input name="form-field-checkbox" type="checkbox" class="ace" />
-							<span class="lbl"> choice 1</span>
-						</label>
-						
+            		<div class="checkbox" id="adminSetRoleDiv">
 					</div>
 				</form>				     
 		     </div>

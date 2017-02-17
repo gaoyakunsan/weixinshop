@@ -60,8 +60,15 @@
      </foreach>  
   </update>
   <select id="adminSetRole" parameterType="java.lang.Integer" resultMap="AdminSetRoleMap">
-        SELECT T1.ROLE_ID AS ROLE_ID ,T1.DISPLAY_NAME AS ROLE_DISPLAY_NAME,IFNULL (T2.ROLE_ID,0) AS ID FROM ROLE T1
-        LEFT JOIN MAP_ADMIN_ROLE T2 ON T1.ROLE_ID= T2.ADMIN_ID 
-        WHERE T1.isdelete = 0 AND T2.admin_ID = #{id}  ORDER BY T1.role_id
+        SELECT 
+		  T1.ROLE_ID AS ROLE_ID,
+		  T1.DISPLAY_NAME AS ROLE_DISPLAY_NAME,
+		  IFNULL(T2.ROLE_ID, 0) AS ID 
+		FROM
+		  ROLE T1 
+		  LEFT JOIN MAP_ADMIN_ROLE T2 
+		    ON T1.ROLE_ID = T2.ROLE_ID 
+		    AND T2.ADMIN_ID = #{id}
+		WHERE T1.ISDELETE = 0 
     </select>
 </mapper>

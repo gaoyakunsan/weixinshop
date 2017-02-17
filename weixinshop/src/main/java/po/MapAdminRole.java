@@ -17,7 +17,7 @@ public class MapAdminRole extends BaseEntity {
 
     private Integer roleId;
 
-    private Byte isdelete;
+    private Boolean isdelete;
 
     private Date createTime;
 
@@ -48,11 +48,11 @@ public class MapAdminRole extends BaseEntity {
         this.roleId = roleId;
     }
 
-	public Byte getIsdelete() {
+	public Boolean getIsdelete() {
 		return isdelete;
 	}
 
-	public void setIsdelete(Byte isdelete) {
+	public void setIsdelete(Boolean isdelete) {
 		this.isdelete = isdelete;
 	}
 

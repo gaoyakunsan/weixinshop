@@ -13,8 +13,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import po.Admin;
+import po.MapAdminRole;
 import service.AdminService;
+import service.MapAdminRoleService;
 import utils.MD5Util;
+import utils.ST;
 import Mapper.AdminMapper;
 
 import com.github.pagehelper.PageHelper;
@@ -27,6 +30,8 @@ public class AdminServiceImpl implements AdminService {
 	private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 	@Autowired
 	private AdminMapper adminMapper;
+	@Autowired
+	private MapAdminRoleService mapAdminRoleService;
 	 
 	public Admin login(String username,String password) throws Exception {
 		Admin admin=new Admin();
@@ -107,6 +112,29 @@ public class AdminServiceImpl implements AdminService {
 	}
 	public List<AdminSetRoleDTO> adminSetRole(Integer id){
 		return adminMapper.adminSetRole(id);
+	}
+
+	public boolean saveAdminSetRole(Integer adminId, String roleIds) {
+		if(ST.isNull(adminId) || ST.isNull(roleIds)){
+			return false;
+		}
+		try {
+			String[] strArr = roleIds.split(",");
+			MapAdminRole mar = new MapAdminRole();
+			mar.setAdminId(adminId);
+			//设置角色之前清空以前的数据
+			mapAdminRoleService.deleteMapAdminRole(mar);
+			//保存数据
+			for(String roleId: strArr){
+				mar.setRoleId(Integer.valueOf(roleId));
+				mapAdminRoleService.saveMapAdminRole(mar);
+			}
+		} catch (Exception e) {
+			logger.error("saveAdminSetRole error:" + e);
+			return false;
+		}
+		return true;
+		
 	}
 
 }

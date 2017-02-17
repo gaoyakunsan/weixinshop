@@ -28,4 +28,6 @@ public interface AdminService{
 	public List<Admin> validateAdmin(String name);
 	
 	public List<AdminSetRoleDTO> adminSetRole(Integer id);
+	
+	public boolean saveAdminSetRole (Integer adminId, String roleIds);
 }

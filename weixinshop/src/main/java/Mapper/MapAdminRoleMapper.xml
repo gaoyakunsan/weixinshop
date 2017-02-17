@@ -5,7 +5,7 @@
     <id column="map_admin_role_id" property="mapAdminRoleId" jdbcType="INTEGER" />
     <result column="admin_id" property="adminId" jdbcType="INTEGER" />
     <result column="role_id" property="roleId" jdbcType="INTEGER" />
-    <result column="isdelete" property="isdelete" jdbcType="TINYINT" />
+    <result column="isdelete" property="isdelete" jdbcType="BIT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="last_modified_time" property="lastModifiedTime" jdbcType="TIMESTAMP" />
   </resultMap>

@@ -528,15 +528,32 @@ function adminSetRole(){
 		return;
 	}
 	//清空之前数据
-	//cleanParams("#adminSetRoleModal");
+	cleanParams("#adminSetRoleModal");
+	$("#adminSetRoleDiv").html("");
 	$("#adminSetRoleModalAdminId").val(adminId);
 	$.ajax({
 		type: "post",
 		url: webroot + "admin/adminSetRole.do",
 		data: {adminId:adminId},
 		success: function(msg){
-			if(msg.success){
-				
+			if(msg){
+				var div = "";
+				for(var i = 0; i < msg.length; i ++){
+					var divTmp = "";
+					if(msg[i].id == 0){
+						divTmp = "<label>" +
+									"<input  name='roleId' value=" + msg[i].roleId + " type='checkbox' class='ace' />" +
+									"<span class='lbl'>" + msg[i].roleDisplayName + "</span>" +
+								"</label>"
+					}else{
+						divTmp = "<label>" +
+									"<input checked='true' name='roleId' value=" + msg[i].roleId + " type='checkbox' class='ace' />" +
+									"<span class='lbl'>" + msg[i].roleDisplayName + "</span>" +
+								"</label>"
+					}
+					div += divTmp;
+				}
+				$("#adminSetRoleDiv").html(div);
 			}
 		}
 	});
@@ -544,5 +561,30 @@ function adminSetRole(){
 }
 
 function saveAdminSetRole(){
+	var adminId = $("#adminSetRoleModalAdminId").val();
+	
+	var roleIds = "";  
+    $("#adminSetRoleModal input:checkbox[name=roleId]:checked").each(function(i){  
+        if(0==i){  
+        	roleIds = $(this).val();  
+        }else{  
+        	roleIds += (","+$(this).val());  
+        }  
+    });  
+    console.log("1111:" + roleIds);
+    $.ajax({
+    	type: "post",
+    	url: webroot + "admin/saveAdminSetRole.do",
+	    data: {adminId:adminId,roleIds:roleIds},
+		success: function(msg){
+			if(msg.success){
+				alertmsg("success", "设置成功!");
+			}else{
+				alertmsg("error", "设置失败!");
+			}
+		}
+    
+    });
+    $("#adminSetRoleModal").modal("hide");
 	
 }
