@@ -40,15 +40,7 @@
 
 		<table enableCountByExample="false" enableUpdateByExample="false"
                 enableDeleteByExample="false" enableSelectByExample="false"
-                selectByExampleQueryId="false" tableName="map_admin_role" domainObjectName="MapAdminRole" />
-		<table enableCountByExample="false" enableUpdateByExample="false"
-                enableDeleteByExample="false" enableSelectByExample="false"
-                selectByExampleQueryId="false" tableName="map_role_privilege" domainObjectName="MapRolePrivilege" />
-		<table enableCountByExample="false" enableUpdateByExample="false"
-                enableDeleteByExample="false" enableSelectByExample="false"
-                selectByExampleQueryId="false" tableName="privilege" domainObjectName="Privilege" />
-		<table enableCountByExample="false" enableUpdateByExample="false"
-                enableDeleteByExample="false" enableSelectByExample="false"
-                selectByExampleQueryId="false" tableName="role" domainObjectName="Role" />
+                selectByExampleQueryId="false" tableName="permission" domainObjectName="Permission" />
+		
 	</context>
 </generatorConfiguration>  
