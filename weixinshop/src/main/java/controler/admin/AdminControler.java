@@ -45,10 +45,10 @@ public class AdminControler extends BaseController{
 	}
 	@RequestMapping(value = "/selectAdmin")
     @ResponseBody
-    public PageInfo selectAdminByParams(HttpServletRequest request, HttpServletResponse response)throws Exception{
+    public PageInfo<Admin> selectAdminByParams(HttpServletRequest request, HttpServletResponse response)throws Exception{
 	 	String sidx = getParam("sidx");// 排序字段;
         String sord = getParam("sord");// 升序降序;
-        PageInfo pageInfo = new PageInfo();
+        PageInfo<Admin> pageInfo = new PageInfo<Admin>();
         try {
         	int oneRecord = Integer.valueOf(getParam("rows"));// 一页几行
             int pageNo = Integer.valueOf(getParam("page"));// 第几页
@@ -67,7 +67,7 @@ public class AdminControler extends BaseController{
             	map.put("endTime", endTime + " 59:59:59");
             }
             map.put("userName", userName);
-            pageInfo= (PageInfo)adminService.selectAdminByParams(map);
+            pageInfo= (PageInfo<Admin>)adminService.selectAdminByParams(map);
 		} catch (Exception e) {
 			logger.error("selectAdmin error:" + e);
 		}
@@ -184,8 +184,6 @@ public class AdminControler extends BaseController{
 			resModel.setSuccess(false);
 			return resModel;
 		}
-		//清空以前的数据
-		
 		boolean bl = adminService.saveAdminSetRole(Integer.valueOf(adminId), roleIds);
 		resModel.setSuccess(bl);
         return resModel;

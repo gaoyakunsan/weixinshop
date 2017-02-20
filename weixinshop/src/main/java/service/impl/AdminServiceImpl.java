@@ -40,16 +40,23 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.selectOne(admin);
 	}
 	
-	public PageInfo selectAdminByParams(Map map) throws Exception {
+	public PageInfo<Admin> selectAdminByParams(Map map) throws Exception {
 		PageHelper.startPage((Integer)map.get("pageNo"),(Integer)map.get("rowCount"));
 		List<Admin> list = adminMapper.selectAdminByParams(map);
-	    PageInfo page = new PageInfo(list);
+	    PageInfo<Admin> page = new PageInfo<Admin>(list);
 		return page;
 	}
 	
     public boolean deleteAdminByIds(List<Integer> ids) {
 		try {
 			adminMapper.deleteAdminByIds(ids);
+			//删除admin同时删除 map_admin_role
+			MapAdminRole mar = new MapAdminRole();
+			for(Integer id: ids){
+				mar.setAdminId(id);
+				mapAdminRoleService.deleteMapAdminRole(mar);
+			}
+			
 		} catch (Exception e) {
 			logger.error("AdminServiceImpl deleteAdminByIds error:" + e);
 			return false;

@@ -13,7 +13,7 @@ public interface AdminService{
 	
 	public Admin login(String username,String password) throws Exception;
 	
-	public PageInfo selectAdminByParams(Map<String, Object> map) throws Exception;
+	public PageInfo<Admin> selectAdminByParams(Map<String, Object> map) throws Exception;
 	
 	//public void deleteAdminByIds(List<Integer> ids);
 

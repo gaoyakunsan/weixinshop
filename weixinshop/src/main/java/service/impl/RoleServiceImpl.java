@@ -7,18 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import po.MapAdminRole;
+import po.Role;
+import service.MapAdminRoleService;
+import service.RoleService;
+import Mapper.RoleMapper;
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-
-import Mapper.RoleMapper;
-import po.Role;
-import service.RoleService;
 @Transactional
 @Service
 public class RoleServiceImpl implements RoleService {
 	
 	@Autowired
 	private RoleMapper roleMapper;
+	
+	@Autowired
+	private MapAdminRoleService mapAdminRoleService;
 
 	public PageInfo<Role> selectRoleByParams(Map<String, Object> map) throws Exception {
 		PageHelper.startPage((Integer)map.get("pageNo"),(Integer)map.get("rowCount"));
@@ -54,6 +59,12 @@ public class RoleServiceImpl implements RoleService {
 	public boolean deleteRoleByIds(List<Integer> ids) throws Exception {
 		try {
 			roleMapper.deleteRoleByIds(ids);
+			//删除role时   删除map_admin_role
+			MapAdminRole mar = new MapAdminRole();
+			for(Integer id: ids){
+				mar.setRoleId(id);
+				mapAdminRoleService.deleteMapAdminRole(mar);
+			}
 		} catch (Exception e) {
 			return false;
 		}
