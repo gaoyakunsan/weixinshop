@@ -273,6 +273,7 @@
 					</ul>
 				</li>
 				</cc:hasUrlPerm>
+				<cc:hasUrlPerm link="productManage1.do">
 				<li class=""><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-pencil-square-o"></i> <span
 						class="menu-text"> 订单管理 </span> <b class="arrow fa fa-angle-down"></b>
@@ -294,7 +295,7 @@
 						</a> <b class="arrow"></b></li>
 					</ul>
 				</li>
-
+				</cc:hasUrlPerm>
 				<li class=""><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
 							分类管理 </span> <b class="arrow fa fa-angle-down"></b>
@@ -320,7 +321,7 @@
 							</li> -->
 					</ul>
 				</li>
-
+				
 				<li class=""><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-tag"></i> <span class="menu-text">报告管理
 					</span> <b class="arrow fa fa-angle-down"></b>
