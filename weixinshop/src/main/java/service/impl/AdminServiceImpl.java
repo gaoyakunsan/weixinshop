@@ -27,7 +27,9 @@ import dto.AdminSetRoleDTO;
 @Transactional
 @Service
 public class AdminServiceImpl implements AdminService {
+	
 	private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
+	
 	@Autowired
 	private AdminMapper adminMapper;
 	@Autowired

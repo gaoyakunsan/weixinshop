@@ -6,10 +6,10 @@
     <jsp-version>2.0</jsp-version>
     <short-name>cc</short-name>
     <!-- backGroundTag -->
-    <uri>http://www.sdyy.tag</uri>
+    <!-- <uri>http://www.sdyy.tag</uri> -->
     <tag>
         <name>hasUrlPerm</name>
-        <tag-class>com.sdyy.common.tags.HasUrlPermissionTag</tag-class>
+        <tag-class>tags.HasUrlPermissionTag</tag-class>
         <attribute>
             <name>link</name>
             <required>false</required>

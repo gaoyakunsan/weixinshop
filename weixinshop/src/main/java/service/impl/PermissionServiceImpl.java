@@ -17,6 +17,7 @@ import Mapper.PermissionMapper;
 public class PermissionServiceImpl implements PermissionService {
 
 	private static final Logger logger = LoggerFactory.getLogger(PermissionServiceImpl.class);
+	
 	@Autowired
 	private PermissionMapper permissionMapper;
 	
@@ -25,7 +26,7 @@ public class PermissionServiceImpl implements PermissionService {
 		List<Permission> list = new ArrayList<Permission>();
 		try {
 			permission.setAdminId(adminId);
-			list = permissionMapper.selectByExample(permission);
+			list = permissionMapper.select(permission);
 		} catch (Exception e) {
 			logger.error("selectPermByAdminId error:" + e);
 			return list;

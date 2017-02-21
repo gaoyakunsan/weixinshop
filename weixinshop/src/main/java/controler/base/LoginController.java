@@ -18,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import po.Admin;
 import service.AdminService;
+import service.PermissionService;
 import utils.MD5Util;
 import utils.ST;
+import cache.PermissionCache;
 
 /**
  *
@@ -33,6 +35,9 @@ public class LoginController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     private AdminService adminService;
+    
+    @Autowired
+	private PermissionService permissionService;
 
     private final String LOGIN_JSP = "login";
     private final String INDEX_JSP = "index";
@@ -74,6 +79,13 @@ public class LoginController extends BaseController {
             return mv;
         }
         session.setAttribute("SESSION_USER", admin);
+        //初始化此用户的权限并放入缓存中
+        try {
+        	PermissionCache.init(permissionService, admin);
+		} catch (Exception e) {
+			logger.error("init PermissionCache error:" + e);
+		}
+        
         
         mv.setViewName(INDEX_JSP);
         mv.addObject("userName", admin.getUsername()); 

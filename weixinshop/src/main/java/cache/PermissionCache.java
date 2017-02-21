@@ -3,8 +3,7 @@ package cache;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import po.Admin;
 import po.Permission;
 import service.PermissionService;
 
@@ -12,11 +11,15 @@ public class PermissionCache {
 	
 	private static List<Permission> permList = new ArrayList<Permission>();
 	
-	@Autowired
-	private PermissionService permissionService;
+	//@Autowired
+	//private static PermissionService permissionService;
 	
-	public void init(){
-		
+	public static void init(PermissionService permissionService, Admin admin){
+		permList = permissionService.selectPermByAdminId(admin.getAdminId());
 	}
+	
+	public static List<Permission> getPermList(){
+		return permList;
+	} 
 
 }

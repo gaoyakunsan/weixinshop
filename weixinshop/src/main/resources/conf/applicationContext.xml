@@ -59,5 +59,7 @@
 		<property name="basePackage" value="Mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
+	
+	<!-- <bean id="permissionService" class="service.impl.PermissionServiceImpl" />  -->
 
 </beans>  
