@@ -236,19 +236,21 @@
 							menu-url="admin/adminPage.do"> <i
 								class="menu-icon fa fa-caret-right"></i> 用户管理
 						</a> <b class="arrow"></b></li>
-
 						<li class=""><a href="#" class="dropdown-toggle"
+							menu-url="permission/permissionPage.do"> <i
+								class="menu-icon fa fa-caret-right"></i> 权限管理
+						</a> <b class="arrow"></b></li>
+						<!-- <li class=""><a href="#" class="dropdown-toggle"
 							menu-url="role/rolePage.do"> <i
 								class="menu-icon fa fa-caret-right"></i> 角色管理
 						</a> <b class="arrow"></b></li>
 						<li class=""><a href="#" class="dropdown-toggle"
 							menu-url="privilege/privilegePage.do"> <i
 								class="menu-icon fa fa-caret-right"></i> 权限管理
-						</a> <b class="arrow"></b></li>
+						</a> <b class="arrow"></b></li> -->
 
 					</ul>
 				</li>
-				<cc:hasUrlPerm link="productManage.do">
 				<li class=""><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-list"></i> <span class="menu-text">
 							商品管理 </span> <b class="arrow fa fa-angle-down"></b>
@@ -272,8 +274,6 @@
 						</a> <b class="arrow"></b></li>
 					</ul>
 				</li>
-				</cc:hasUrlPerm>
-				<cc:hasUrlPerm link="productManage1.do">
 				<li class=""><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-pencil-square-o"></i> <span
 						class="menu-text"> 订单管理 </span> <b class="arrow fa fa-angle-down"></b>
@@ -295,7 +295,6 @@
 						</a> <b class="arrow"></b></li>
 					</ul>
 				</li>
-				</cc:hasUrlPerm>
 				<li class=""><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
 							分类管理 </span> <b class="arrow fa fa-angle-down"></b>

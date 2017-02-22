@@ -15,7 +15,7 @@ public class PermissionCache {
 	//private static PermissionService permissionService;
 	
 	public static void init(PermissionService permissionService, Admin admin){
-		permList = permissionService.selectPermByAdminId(admin.getAdminId());
+		//permList = permissionService.selectPermByAdminId(admin.getAdminId());
 	}
 	
 	public static List<Permission> getPermList(){

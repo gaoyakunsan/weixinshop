@@ -2,7 +2,7 @@
 <%
 	String path = request.getContextPath();
 %>
-<script src="<%=path%>/pagejs/admin/admin.js"></script>
+<script src="<%=path%>/pagejs/permission/permission.js"></script>
 <!-- #section:basics/content.breadcrumbs -->
 <div class="breadcrumbs" id="breadcrumbs">
 	<script type="text/javascript">
@@ -21,7 +21,7 @@
 		    </li> -->
 		<li><i class="ace-icon fa fa-home home-icon"></i><a href="#">首页</a></li>
 		<li><a href="#">系统管理</a></li>
-		<li class="active"><span>用户管理</span></li>
+		<li class="active"><span>权限管理</span></li>
 	</ul>
 	<!-- /.breadcrumb -->
 </div>
@@ -34,7 +34,7 @@
 	    <div class="panel-heading"> 
 	      <div class="panel-title"  flag="show" id="searchTitle">
 	        <a data-toggle="collapse" data-parent="#accordion" href="#searchDiv" onclick="change()">
-	        	用户搜索<i class="fa fa-plus-square"></i></a>
+	        	权限搜索<i class="fa fa-plus-square"></i></a>
 	      </div>
 	      <script>
 	           function  change(){
@@ -51,13 +51,13 @@
 	    </div>
 	    <div id="searchDiv" class="panel-collapse collapse">
 	      <div class="panel-body">
-			  <form id="queryAdminForm" class="form-horizontal" role="form">
+			  <form id="queryPermissionForm" class="form-horizontal" role="form">
 				<!-- #section:elements.form -->
 				<div class="form-group">
 					<div class="col-md-3">
-						<label class="col-sm-4 control-label no-padding-right" for="shortName">姓名</label>
+						<label class="col-sm-4 control-label no-padding-right" for="shortName">权限名称</label>
 						<div class="col-sm-8">
-							<input type="text" name="userName" class="form-control" />
+							<input type="text" name="permName" class="form-control" />
 						</div>
 					</div>
 				</div>
@@ -96,11 +96,9 @@
 	  </div>
 	</div>
 	<div id="actions-before" class="btn-group">	
-        <button type="button" onclick="addAdmin()" class="btn-link"><i class="glyphicon glyphicon-plus"></i> &nbsp;添加</button>
-        <button type="button" onclick="editAdmin()" class="btn-link"><i class="glyphicon glyphicon-edit"></i> &nbsp;修改</button>
-        <!-- <button type="button" onclick="adminSetRole()" class="btn-link"><i class="glyphicon glyphicon-edit"></i> &nbsp;设置权限</button> -->
-        <button type="button" onclick="adminSetPermission()" class="btn-link"><i class="glyphicon glyphicon-edit"></i> &nbsp;用户设置权限</button>
-        <button type="button" onclick="deleteAdmin()" class="btn-link"><i class="glyphicon glyphicon-remove"></i> &nbsp;删除用户</button>
+        <button type="button" onclick="addPermission()" class="btn-link"><i class="glyphicon glyphicon-plus"></i> &nbsp;添加</button>
+        <button type="button" onclick="editPermission()" class="btn-link"><i class="glyphicon glyphicon-edit"></i> &nbsp;修改</button>
+        <button type="button" onclick="deletePermission()" class="btn-link"><i class="glyphicon glyphicon-remove"></i> &nbsp;删除权限</button>
     </div>
 	<div class="row">
 		<div class="col-xs-12">
@@ -111,79 +109,46 @@
 		</div><!-- /.col -->
 	</div><!-- /.row -->
 </div><!-- /.page-content -->
-<!-- 添加用户model start -->
-<div class="modal fade" id="addAdminModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<!-- 添加权限model start -->
+<div class="modal fade" id="addPermissionModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
              <div class="modal-header">
              	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			    <h4 class="modal-title" >添加用户</h4>
+			    <h4 class="modal-title" >添加权限</h4>
 		     </div>
 		     <div class="modal-body">
-            	<form class="form-horizontal " id="addAdminform" >
+            	<form class="form-horizontal " id="addPermissionform" >
            			<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="username">用户名</label>
-
+						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="permName">权限名</label>
 						<div class="col-xs-12 col-sm-8">
 							<div class="clearfix">
-								<input type="text" name="username" class="col-xs-12 col-sm-6" />
+								<input type="text" name="permName" class="col-xs-12 col-sm-6" />
 							</div>
 						</div>
 					</div>
 					<div class="space-2"></div>
 					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="realname">真实名</label>
-
+						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="url">权限URL</label>
 						<div class="col-xs-12 col-sm-8">
 							<div class="clearfix">
-								<input type="text" name="realname" class="col-xs-12 col-sm-6" />
+								<input type="text" name="url" class="col-xs-12 col-sm-6" />
 							</div>
 						</div>
 					</div>
 					<div class="space-2"></div>
 					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="phone">手机</label>
-
+						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="permDes">权限描述</label>
 						<div class="col-xs-12 col-sm-8">
 							<div class="clearfix">
-								<input type="tel" name="phone" class="col-xs-12 col-sm-6" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="email">email:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="email" name="email"  class="col-xs-12 col-sm-7" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="password">密码:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="password" name="password" class="col-xs-12 col-sm-6" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="password2">确认密码:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="password" name="password2" class="col-xs-12 col-sm-6" />
+								<input type="text" name="permDes" class="col-xs-12 col-sm-6" />
 							</div>
 						</div>
 					</div>
 				</form>
 		     </div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-md" onclick="saveAdmin()" >
+				<button type="button" class="btn btn-md" onclick="savePermission()" >
 			    	保存
 			    </button>
 			    <button type="button" class="btn btn-md" id="modalClose" data-dismiss="modal">
@@ -193,81 +158,48 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-<!-- 添加用户model end -->
-<!-- 修改用户model start -->
-<div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<!-- 添加权限model end -->
+<!-- 修改权限model start -->
+<div class="modal fade" id="editPermissionModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
              <div class="modal-header">
              	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			    <h4 class="modal-title" >修改用户</h4>
+			    <h4 class="modal-title" >修改权限</h4>
 		     </div>
 		     <div class="modal-body">
-            	<form class="form-horizontal " id="editAdminform" >
-            		<input type="hidden" name="id" class="col-xs-12 col-sm-6" />
+            	<form class="form-horizontal " id="editPermissionform" >
+            		<input type="hidden" name="permissionId" class="col-xs-12 col-sm-6" />
            			<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="username">用户名</label>
-
+						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="permName">权限名</label>
 						<div class="col-xs-12 col-sm-8">
 							<div class="clearfix">
-								<input type="text" name="username" class="col-xs-12 col-sm-6" />
+								<input type="text" name="permName" class="col-xs-12 col-sm-6" />
 							</div>
 						</div>
 					</div>
 					<div class="space-2"></div>
 					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="realname">真实名</label>
-
+						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="url">权限URL</label>
 						<div class="col-xs-12 col-sm-8">
 							<div class="clearfix">
-								<input type="text" name="realname" class="col-xs-12 col-sm-6" />
+								<input type="text" name="url" class="col-xs-12 col-sm-6" />
 							</div>
 						</div>
 					</div>
 					<div class="space-2"></div>
 					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="phone">手机</label>
-
+						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="permDes">权限描述</label>
 						<div class="col-xs-12 col-sm-8">
 							<div class="clearfix">
-								<input type="tel" name="phone" class="col-xs-12 col-sm-6" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="email">email:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="email" name="email"  class="col-xs-12 col-sm-7" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="password">密码:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="password" name="password" class="col-xs-12 col-sm-6" />
-							</div>
-						</div>
-					</div>
-					<div class="space-2"></div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-4 no-padding-right" for="password2">确认密码:</label>
-
-						<div class="col-xs-12 col-sm-8">
-							<div class="clearfix">
-								<input type="password" name="password2" class="col-xs-12 col-sm-6" />
+								<input type="text" name="permDes" class="col-xs-12 col-sm-6" />
 							</div>
 						</div>
 					</div>
 				</form>				     
 		     </div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-md" onclick="editAndSaveAdmin()">
+				<button type="button" class="btn btn-md" onclick="editAndSavePermission()">
 			    	保存
 			    </button>
 			    <button type="button" class="btn btn-md" id="modalClose" data-dismiss="modal">
@@ -277,14 +209,14 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-<!-- 修改用户model end -->
-<!-- 用户设置角色model start -->
+<!-- 修改权限model end -->
+<!-- 权限设置角色model start -->
 <div class="modal fade" id="adminSetRoleModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
              <div class="modal-header">
              	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			    <h4 class="modal-title" >用户设置角色</h4>
+			    <h4 class="modal-title" >权限设置角色</h4>
 		     </div>
 		     <div class="modal-body">
             	<form class="form-horizontal " id="adminSetRoleFrom" >
@@ -304,11 +236,11 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-<!-- 用户设置角色model end -->
+<!-- 权限设置角色model end -->
 <script type="text/javascript">
 
 jQuery(function($) {
-	initAdminManager();
+	initPermissionManager();
 })
 </script>
 

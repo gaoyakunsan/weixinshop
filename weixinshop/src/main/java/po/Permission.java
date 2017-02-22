@@ -13,9 +13,9 @@ public class Permission extends BaseEntity{
 	@Id
 	private Integer permissionId;
 	
-    private Integer adminId;
+    private String permName;
 
-    private Integer roleId;
+    private String permDes;
 
     private String url;
 
@@ -33,23 +33,23 @@ public class Permission extends BaseEntity{
         this.permissionId = permissionId;
     }
 
-    public Integer getAdminId() {
-        return adminId;
-    }
+    public String getPermName() {
+		return permName;
+	}
 
-    public void setAdminId(Integer adminId) {
-        this.adminId = adminId;
-    }
+	public void setPermName(String permName) {
+		this.permName = permName;
+	}
 
-    public Integer getRoleId() {
-        return roleId;
-    }
+	public String getPermDes() {
+		return permDes;
+	}
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
+	public void setPermDes(String permDes) {
+		this.permDes = permDes;
+	}
 
-    public String getUrl() {
+	public String getUrl() {
         return url;
     }
 

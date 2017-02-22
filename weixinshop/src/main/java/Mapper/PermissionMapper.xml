@@ -3,16 +3,42 @@
 <mapper namespace="Mapper.PermissionMapper" >
   <resultMap id="BaseResultMap" type="po.Permission" >
     <id column="permission_id" property="permissionId" jdbcType="INTEGER" />
-    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
-    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="perm_name" property="permName" jdbcType="VARCHAR" />
+    <result column="perm_des" property="permDes" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="isdelete" property="isdelete" jdbcType="BIT" />
     <result column="last_modified_time" property="lastModifiedTime" jdbcType="TIMESTAMP" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    permission_id, admin_id, role_id, url, isdelete, last_modified_time, create_time
+    permission_id, perm_name, perm_des, url, isdelete, last_modified_time, create_time
   </sql>
+  
+   <select id="selectPermissionByParams" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+  	select 
+    <include refid="Base_Column_List" />
+	    from permission
+	    where isdelete = 0
+	  <if test="permissionId != null">
+        and permission_id = #{permissionId}
+      </if>
+      <if test="permName != null">
+        and perm_name LIKE CONCAT('%',#{permName},'%') 
+      </if>
+      <if test="url != null">
+        AND url = #{url}
+      </if>
+      <if test="beginTime != null ">
+          AND CREATE_TIME > #{beginTime} 
+      </if>
+      <if test="endTime != null ">
+          <![CDATA[AND CREATE_TIME <  #{endTime} ]]>
+      </if>
+      <if test="sidx != null">
+        order by ${sidx} ${sord}
+      </if>
+  </select>
+  
   <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="po.PermissionKey" >
     select 
     <include refid="Base_Column_List" />

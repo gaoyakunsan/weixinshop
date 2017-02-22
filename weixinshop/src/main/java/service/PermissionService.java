@@ -1,12 +1,20 @@
 package service;
 
-import java.util.List;
+import java.util.Map;
 
 import po.Permission;
+
+import com.github.pagehelper.PageInfo;
 
 
 public interface PermissionService {
 	
-	public List<Permission> selectPermByAdminId(Integer adminId);
+	public PageInfo<Permission> selectPermissionByParams(Map<String, Object> map) throws Exception;	
+	
+	public boolean savePermission(Permission permission);
+	
+	public Permission selectPermissionByPermissionId(Integer id);
+	
+	public boolean updatePermission(Permission permission);
 	
 }
