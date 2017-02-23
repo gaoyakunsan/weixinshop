@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
-@Table(name ="admin")
+@Table(name ="map_admin_permission")
 public class MapAdminPermission extends BaseEntity{
 	
 	private static final long serialVersionUID = -2519699610968036301L;

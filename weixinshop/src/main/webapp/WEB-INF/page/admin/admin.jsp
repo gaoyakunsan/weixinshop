@@ -305,6 +305,36 @@
     </div><!-- /.modal -->
 </div>
 <!-- 用户设置角色model end -->
+<!-- 用户设置权限model begin -->
+<div class="modal fade" id="adminSetPermissionModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+             <div class="modal-header">
+             	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			    <h4 class="modal-title" >用户设置权限</h4>
+		     </div>
+		     <div class="modal-body">
+		     	<div class="row">
+					<div class="col-xs-12">
+						<table id="grid-table-permission"></table>
+			
+						<div id="grid-pager-permission"></div>
+						<!-- PAGE CONTENT ENDS -->
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+		     </div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-md" onclick="saveAdminSetRole()">
+			    	保存
+			    </button>
+			    <button type="button" class="btn btn-md" id="modalClose" data-dismiss="modal">
+			    	关闭
+			    </button>
+			</div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 用户设置权限model end -->
 <script type="text/javascript">
 
 jQuery(function($) {
