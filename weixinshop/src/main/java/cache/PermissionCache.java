@@ -4,22 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import po.Admin;
-import po.Permission;
-import service.PermissionService;
+import po.MapAdminPermission;
+import service.MapAdminPermissionService;
 
 public class PermissionCache {
 	
-	private static List<Permission> permList = new ArrayList<Permission>();
+	private static List<MapAdminPermission> permList = new ArrayList<MapAdminPermission>();
 	
 	//@Autowired
 	//private static PermissionService permissionService;
 	
-	public static void init(PermissionService permissionService, Admin admin){
+	public static void init(MapAdminPermissionService mapAdminPermissionService, Admin admin){
 		//permList = permissionService.selectPermByAdminId(admin.getAdminId());
+		permList = mapAdminPermissionService.viewAdminPermission(admin.getAdminId());
 	}
 	
-	public static List<Permission> getPermList(){
+	public static List<MapAdminPermission> getPermList(){
 		return permList;
 	} 
+	
+	public static void destory(){
+		permList = null;
+	}
 
 }

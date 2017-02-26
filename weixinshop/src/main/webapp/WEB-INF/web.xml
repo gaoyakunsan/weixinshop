@@ -75,6 +75,18 @@
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
 	<!-- config log4j end -->
+	
+	
+	<!-- jetty 热部署不能更改静态文件 -->
+	<servlet>
+　　<!-- Override init parameter to avoid nasty -->
+　　<!-- file locking issue on windows.         -->
+　　<servlet-name>default</servlet-name>
+　　<init-param>
+　　<param-name>useFileMappedBuffer</param-name>
+　　<param-value>false</param-value>
+　　</init-param>
+　　</servlet>
   	
 </web-app>  
 

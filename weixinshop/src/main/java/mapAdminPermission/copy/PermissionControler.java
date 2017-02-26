@@ -1,4 +1,4 @@
-package controler.permission;
+package mapAdminPermission.copy;
 
 import java.util.HashMap;
 import java.util.Map;

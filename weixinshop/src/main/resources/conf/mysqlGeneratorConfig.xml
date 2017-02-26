@@ -40,7 +40,7 @@
 
 		<table enableCountByExample="false" enableUpdateByExample="false"
                 enableDeleteByExample="false" enableSelectByExample="false"
-                selectByExampleQueryId="false" tableName="permission" domainObjectName="Permission" />
+                selectByExampleQueryId="false" tableName="map_admin_permission" domainObjectName="MapAdminPermission" />
 		
 	</context>
 </generatorConfiguration>  

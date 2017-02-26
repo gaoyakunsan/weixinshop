@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import po.Permission;
-import service.PermissionService;
-import Mapper.PermissionMapper;
-
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
+import Mapper.MapAdminPermissionMapper;
+import Mapper.PermissionMapper;
+import po.MapAdminPermission;
+import po.Permission;
+import service.PermissionService;
+import utils.ST;
 @Transactional
 @Service
 public class PermissionServiceImpl implements PermissionService {
@@ -23,6 +26,8 @@ public class PermissionServiceImpl implements PermissionService {
 	
 	@Autowired
 	private PermissionMapper permissionMapper;
+	@Autowired
+	private MapAdminPermissionMapper mapAdminPermissionMapper;
 
 	public PageInfo<Permission> selectPermissionByParams(Map<String, Object> map)
 			throws Exception {
@@ -62,6 +67,28 @@ public class PermissionServiceImpl implements PermissionService {
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error("updatePermission error:" + e);
+			return false;
+		}
+		return true;
+	}
+
+	public boolean deleteByPermissionIds(String ids) {
+		// TODO Auto-generated method stub
+		if(ST.isNull(ids)){
+			return false;
+		}
+		try {
+			String idTmps = ids.substring(0, ids.length() - 1);
+			String[] idArr = idTmps.split(",");
+			MapAdminPermission map = new MapAdminPermission();
+			for(String id: idArr){
+				permissionMapper.deleteByPrimaryKey(Integer.valueOf(id));
+				map.setPermissionId(Integer.valueOf(id));
+				mapAdminPermissionMapper.delete(map);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error("deleteByPermissionIds error:" + e);
 			return false;
 		}
 		return true;

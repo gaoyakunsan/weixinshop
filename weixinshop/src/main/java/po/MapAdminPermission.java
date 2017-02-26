@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 @Table(name ="map_admin_permission")
 public class MapAdminPermission extends BaseEntity{
 	
@@ -16,11 +18,17 @@ public class MapAdminPermission extends BaseEntity{
 
     private Integer permissionId;
 
-    private Byte isdelete;
+    private Boolean isdelete;
 
     private Date createTime;
 
     private Date lastModifiedTime;
+    
+    @Transient
+    private Admin admin;
+    
+    @Transient
+    private Permission permission;
 
     public Integer getMapAdminPermId() {
         return mapAdminPermId;
@@ -45,15 +53,15 @@ public class MapAdminPermission extends BaseEntity{
         this.permissionId = permissionId;
     }
 
-    public Byte getIsdelete() {
-        return isdelete;
-    }
+    public Boolean getIsdelete() {
+		return isdelete;
+	}
 
-    public void setIsdelete(Byte isdelete) {
-        this.isdelete = isdelete;
-    }
+	public void setIsdelete(Boolean isdelete) {
+		this.isdelete = isdelete;
+	}
 
-    public Date getCreateTime() {
+	public Date getCreateTime() {
         return createTime;
     }
 
@@ -68,4 +76,21 @@ public class MapAdminPermission extends BaseEntity{
     public void setLastModifiedTime(Date lastModifiedTime) {
         this.lastModifiedTime = lastModifiedTime;
     }
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
+	public Permission getPermission() {
+		return permission;
+	}
+
+	public void setPermission(Permission permission) {
+		this.permission = permission;
+	}
+    
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
-import po.Permission;
 import cache.PermissionCache;
+import po.MapAdminPermission;
 
 public class HasUrlPermissionTag extends BodyTagSupport{
 	
@@ -29,14 +29,21 @@ public class HasUrlPermissionTag extends BodyTagSupport{
         }*/
         //判断是否有权限访问
         
-        List<Permission> list =  PermissionCache.getPermList();
+        List<MapAdminPermission> list =  PermissionCache.getPermList();
         if(list != null && list.size() > 0){
-        	for(Permission per: list){
-        		if(per.getUrl().equals(link)){
-        			return BodyTagSupport.EVAL_BODY_INCLUDE;// 返回此则执行标签body中内容，SKIP_BODY则不执行
+        	boolean flag = false;
+        	for(MapAdminPermission map: list){
+        		if(map.getPermission().getUrl().equals(link)){
+        			flag = true;
+        			break;
         		}else{
-        			return BodyTagSupport.SKIP_BODY;
+         			flag = false; 
         		}
+        	}
+        	if(flag){
+        		return BodyTagSupport.EVAL_BODY_INCLUDE;// 返回此则执行标签body中内容，SKIP_BODY则不执行
+        	}else{
+        		return BodyTagSupport.SKIP_BODY;
         	}
         }
         

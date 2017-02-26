@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import cache.PermissionCache;
 import po.Admin;
 import service.AdminService;
-import service.PermissionService;
+import service.MapAdminPermissionService;
 import utils.MD5Util;
 import utils.ST;
-import cache.PermissionCache;
 
 /**
  *
@@ -37,7 +37,7 @@ public class LoginController extends BaseController {
     private AdminService adminService;
     
     @Autowired
-	private PermissionService permissionService;
+	private MapAdminPermissionService mapAdminPermissionService;
 
     private final String LOGIN_JSP = "login";
     private final String INDEX_JSP = "index";
@@ -81,7 +81,8 @@ public class LoginController extends BaseController {
         session.setAttribute("SESSION_USER", admin);
         //初始化此用户的权限并放入缓存中
         try {
-        	PermissionCache.init(permissionService, admin);
+        	//PermissionCache.destory();
+        	PermissionCache.init(mapAdminPermissionService, admin);
 		} catch (Exception e) {
 			logger.error("init PermissionCache error:" + e);
 		}

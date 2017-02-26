@@ -3,11 +3,11 @@ package service;
 import java.util.List;
 import java.util.Map;
 
-import po.Admin;
-
 import com.github.pagehelper.PageInfo;
 
 import dto.AdminSetRoleDTO;
+import po.Admin;
+import po.Permission;
 
 public interface AdminService{
 	
@@ -30,4 +30,8 @@ public interface AdminService{
 	public List<AdminSetRoleDTO> adminSetRole(Integer id);
 	
 	public boolean saveAdminSetRole (Integer adminId, String roleIds);
+	
+	public boolean saveAdminSetPermission(String adminId, String permissionIds);
+	
+	public List<Permission> viewAdminPermission(String adminId);
 }

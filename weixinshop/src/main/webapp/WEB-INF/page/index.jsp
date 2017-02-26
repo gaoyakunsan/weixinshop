@@ -226,112 +226,106 @@
 							Dashboard </span>
 				</a> <b class="arrow"></b>
 				</li>
-				<li class=""><a href="#" class="dropdown-toggle"> <i
-						class="menu-icon fa fa-desktop"></i> <span class="menu-text">
-							系统管理</span> <b class="arrow fa fa-angle-down"></b>
-				</a> <b class="arrow"></b>
-
-					<ul class="submenu">
-						<li class=""><a href="#" class="dropdown-toggle"
-							menu-url="admin/adminPage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 用户管理
-						</a> <b class="arrow"></b></li>
-						<li class=""><a href="#" class="dropdown-toggle"
-							menu-url="permission/permissionPage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 权限管理
-						</a> <b class="arrow"></b></li>
-						<!-- <li class=""><a href="#" class="dropdown-toggle"
-							menu-url="role/rolePage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 角色管理
-						</a> <b class="arrow"></b></li>
-						<li class=""><a href="#" class="dropdown-toggle"
-							menu-url="privilege/privilegePage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 权限管理
-						</a> <b class="arrow"></b></li> -->
-
-					</ul>
-				</li>
-				<li class=""><a href="#" class="dropdown-toggle"> <i
-						class="menu-icon fa fa-list"></i> <span class="menu-text">
-							商品管理 </span> <b class="arrow fa fa-angle-down"></b>
-				</a> <b class="arrow"></b>
-
-					<ul class="submenu">
-						<li class=""><a a href="#" class="dropdown-toggle"
-							menu-url="classify/productPage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 上传商品
-						</a> <b class="arrow"></b></li>
-
-						<li class=""><a a href="#" class="dropdown-toggle"
-							menu-url="product/productPage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 商品查询
-						</a> <b class="arrow"></b></li>
-
-
-						<li class=""><a a href="#" class="dropdown-toggle"
-							menu-url="product/productEditorPage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 商品修改
-						</a> <b class="arrow"></b></li>
-					</ul>
-				</li>
-				<li class=""><a href="#" class="dropdown-toggle"> <i
-						class="menu-icon fa fa-pencil-square-o"></i> <span
-						class="menu-text"> 订单管理 </span> <b class="arrow fa fa-angle-down"></b>
-				</a> <b class="arrow"></b>
-
-					<ul class="submenu">
-						<li class=""><a href="#"
-							menu-url="orderInfo/reAndDeOrderPage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 收发货订单
-						</a> <b class="arrow"></b></li>
-
-						<li class=""><a href="#"
-							menu-url="orderInfo/detectionOrderPage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 检测中订单
-						</a> <b class="arrow"></b></li>
-						<li class=""><a href="#"
-							menu-url="orderInfo/completeOrderPage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 已完成订单
-						</a> <b class="arrow"></b></li>
-					</ul>
-				</li>
-				<li class=""><a href="#" class="dropdown-toggle"> <i
-						class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
-							分类管理 </span> <b class="arrow fa fa-angle-down"></b>
-				</a> <b class="arrow"></b>
-					<ul class="submenu">
-						<li class=""><a href="#"
-							menu-url="classify2/classifyListPage.do"> <i
-								class="menu-icon fa fa-caret-right"></i> 分类操作
-						</a> <b class="arrow"></b></li>
-						<!-- <li class="">
-								<a href="#" menu-url="classify/oneClassifyListPage.do">
-									<i class="menu-icon fa fa-caret-right"></i>
-									一级分类
-								</a>
-								<b class="arrow"></b>
-							</li>
-							<li class="">
-								<a href="#" menu-url="classify/twoClassifyListPage.do">
-									<i class="menu-icon fa fa-caret-right"></i>
-									二级分类
-								</a>
-								<b class="arrow"></b>
-							</li> -->
-					</ul>
-				</li>
+				<cc:hasUrlPerm link="systemadmin.do">
+					<li class=""><a href="#" class="dropdown-toggle"> <i
+							class="menu-icon fa fa-desktop"></i> <span class="menu-text">
+								系统管理</span> <b class="arrow fa fa-angle-down"></b>
+					</a> <b class="arrow"></b>
+	
+						<ul class="submenu">
+							<cc:hasUrlPerm link="admin/adminPage.do">
+								<li class=""><a href="#" class="dropdown-toggle"
+									menu-url="admin/adminPage.do"> <i
+										class="menu-icon fa fa-caret-right"></i> 用户管理
+								</a> <b class="arrow"></b></li>
+							</cc:hasUrlPerm>
+							<cc:hasUrlPerm link="permission/permissionPage.do">
+								<li class=""><a href="#" class="dropdown-toggle"
+									menu-url="permission/permissionPage.do"> <i
+										class="menu-icon fa fa-caret-right"></i> 权限管理
+								</a> <b class="arrow"></b></li>
+							</cc:hasUrlPerm>
+							<cc:hasUrlPerm link="mapAdminPermission/mapAdminPermissionPage.do">
+								<li class=""><a href="#" class="dropdown-toggle"
+									menu-url="mapAdminPermission/mapAdminPermissionPage.do"> <i
+										class="menu-icon fa fa-caret-right"></i> 用户权限
+								</a> <b class="arrow"></b></li>
+							</cc:hasUrlPerm>
+						</ul>
+					</li>
+				</cc:hasUrlPerm>
+				<cc:hasUrlPerm link="productManage.do">
+					<li class=""><a href="#" class="dropdown-toggle"> <i
+							class="menu-icon fa fa-list"></i> <span class="menu-text">
+								商品管理 </span> <b class="arrow fa fa-angle-down"></b>
+					</a> <b class="arrow"></b>
+	
+						<ul class="submenu">
+							<cc:hasUrlPerm link="classify/productPage.do">
+								<li class=""><a a href="#" class="dropdown-toggle"
+									menu-url="classify/productPage.do"> <i
+										class="menu-icon fa fa-caret-right"></i> 上传商品
+								</a> <b class="arrow"></b></li>
+							</cc:hasUrlPerm>
+							<cc:hasUrlPerm link="product/productPage.do">
+								<li class=""><a a href="#" class="dropdown-toggle"
+									menu-url="product/productPage.do"> <i
+										class="menu-icon fa fa-caret-right"></i> 商品查询
+								</a> <b class="arrow"></b></li>
+							</cc:hasUrlPerm>
+							<cc:hasUrlPerm link="product/productEditorPage.do">
+								<li class=""><a a href="#" class="dropdown-toggle"
+									menu-url="product/productEditorPage.do"> <i
+										class="menu-icon fa fa-caret-right"></i> 商品修改
+								</a> <b class="arrow"></b></li>
+							</cc:hasUrlPerm>
+						</ul>
+					</li>
+				</cc:hasUrlPerm>
+				<cc:hasUrlPerm link="orderManage.do">
+					<li class=""><a href="#" class="dropdown-toggle"> <i
+							class="menu-icon fa fa-pencil-square-o"></i> <span
+							class="menu-text"> 订单管理 </span> <b class="arrow fa fa-angle-down"></b>
+					</a> <b class="arrow"></b>
+	
+						<ul class="submenu">
+							<cc:hasUrlPerm link="orderInfo/reAndDeOrderPage.do">
+								<li class=""><a href="#"
+									menu-url="orderInfo/reAndDeOrderPage.do"> <i
+										class="menu-icon fa fa-caret-right"></i> 收发货订单
+								</a> <b class="arrow"></b></li>
+							</cc:hasUrlPerm>
+							<cc:hasUrlPerm link="orderInfo/detectionOrderPage.do">
+								<li class=""><a href="#"
+									menu-url="orderInfo/detectionOrderPage.do"> <i
+										class="menu-icon fa fa-caret-right"></i> 检测中订单
+								</a> <b class="arrow"></b></li>
+							</cc:hasUrlPerm>
+							<cc:hasUrlPerm link="orderInfo/completeOrderPage.do">
+								<li class=""><a href="#"
+									menu-url="orderInfo/completeOrderPage.do"> <i
+										class="menu-icon fa fa-caret-right"></i> 已完成订单
+								</a> <b class="arrow"></b></li>
+							</cc:hasUrlPerm>
+						</ul>
+					</li>
+				</cc:hasUrlPerm>
+				<cc:hasUrlPerm link="classifyManage.do">
+					<li class=""><a href="#" class="dropdown-toggle"> <i
+							class="menu-icon fa fa-list-alt"></i> <span class="menu-text">
+								分类管理 </span> <b class="arrow fa fa-angle-down"></b>
+					</a> <b class="arrow"></b>
+						<ul class="submenu">
+							<cc:hasUrlPerm link="classify2/classifyListPage.do">
+								<li class=""><a href="#"
+									menu-url="classify2/classifyListPage.do"> <i
+										class="menu-icon fa fa-caret-right"></i> 分类操作
+								</a> <b class="arrow"></b></li>
+							</cc:hasUrlPerm>
+						</ul>
+					</li>
+				</cc:hasUrlPerm>
 				
-				<li class=""><a href="#" class="dropdown-toggle"> <i
-						class="menu-icon fa fa-tag"></i> <span class="menu-text">报告管理
-					</span> <b class="arrow fa fa-angle-down"></b>
-				</a> <b class="arrow"></b>
-					<ul class="submenu">
-						<li class=""><a href="#" menu-url="report/reportListPage.do">
-								<i class="menu-icon fa fa-caret-right"></i> 基因检测报告
-						</a> <b class="arrow"></b></li>
-					</ul>
-				</li>
-
 			</ul>
 			<!-- /.nav-list -->
 

@@ -17,4 +17,6 @@ public interface PermissionService {
 	
 	public boolean updatePermission(Permission permission);
 	
+	public boolean deleteByPermissionIds(String ids);
+	
 }

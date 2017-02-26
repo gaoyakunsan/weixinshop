@@ -17,15 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import po.Admin;
-import po.ResModel;
-import service.AdminService;
-import utils.ST;
-
 import com.github.pagehelper.PageInfo;
 
 import controler.base.BaseController;
 import dto.AdminSetRoleDTO;
+import po.Admin;
+import po.MapAdminPermission;
+import po.ResModel;
+import service.AdminService;
+import service.MapAdminPermissionService;
+import utils.ST;
 
 @Controller
 @RequestMapping(value="/admin")
@@ -36,6 +37,9 @@ public class AdminControler extends BaseController{
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private MapAdminPermissionService mapAdminPermissionService;
 	
 	@RequestMapping(value="/adminPage")
 	public ModelAndView adminPage(HttpServletRequest request,HttpServletResponse response){
@@ -187,6 +191,41 @@ public class AdminControler extends BaseController{
 		boolean bl = adminService.saveAdminSetRole(Integer.valueOf(adminId), roleIds);
 		resModel.setSuccess(bl);
         return resModel;
+    }
+	
+	@RequestMapping(value="/saveAdminSetPermission")
+	@ResponseBody
+	public ResModel saveAdminSetPermission(HttpServletRequest request,HttpServletResponse response){
+		ResModel  resModel = new ResModel();
+		String adminId = getParam("adminId");
+		String permissionIdTmps = getParam("permissionIds");
+		if(ST.isNull(adminId) || ST.isNull(permissionIdTmps)){
+			resModel.setSuccess(false);
+			return resModel;
+		}
+		String permissionIds = permissionIdTmps.substring(0, permissionIdTmps.length() - 1);
+		boolean bl = false;
+		try {
+			bl = adminService.saveAdminSetPermission(adminId, permissionIds);
+		} catch (Exception e) {
+			logger.error("saveAdminSetPermission error:" + e);
+			resModel.setSuccess(bl);
+			return resModel;
+		}
+		resModel.setSuccess(bl);
+		return resModel;
+	}
+	@RequestMapping(value = "/viewAdminPermission")
+	@ResponseBody
+    public List<MapAdminPermission> viewAdminPermission(HttpServletRequest request,HttpServletResponse response) {
+		List<MapAdminPermission> list = new ArrayList<MapAdminPermission>();
+		String adminId = getParam("adminId");
+		if(ST.isNull(adminId)){
+			return list;
+		}
+		list = mapAdminPermissionService.viewAdminPermission(Integer.valueOf(adminId));
+		
+        return list;
     }
 	
 }

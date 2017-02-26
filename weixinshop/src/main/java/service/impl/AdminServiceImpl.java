@@ -12,18 +12,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import po.Admin;
-import po.MapAdminRole;
-import service.AdminService;
-import service.MapAdminRoleService;
-import utils.MD5Util;
-import utils.ST;
-import Mapper.AdminMapper;
-
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import Mapper.AdminMapper;
 import dto.AdminSetRoleDTO;
+import po.Admin;
+import po.MapAdminPermission;
+import po.MapAdminRole;
+import po.Permission;
+import service.AdminService;
+import service.MapAdminPermissionService;
+import service.MapAdminRoleService;
+import utils.MD5Util;
+import utils.ST;
 @Transactional
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -34,6 +36,8 @@ public class AdminServiceImpl implements AdminService {
 	private AdminMapper adminMapper;
 	@Autowired
 	private MapAdminRoleService mapAdminRoleService;
+	@Autowired
+	private MapAdminPermissionService mapAdminPermissionService;
 	 
 	public Admin login(String username,String password) throws Exception {
 		Admin admin=new Admin();
@@ -53,12 +57,13 @@ public class AdminServiceImpl implements AdminService {
 		try {
 			adminMapper.deleteAdminByIds(ids);
 			//删除admin同时删除 map_admin_role
-			MapAdminRole mar = new MapAdminRole();
+			MapAdminPermission map = new MapAdminPermission();
 			for(Integer id: ids){
-				mar.setAdminId(id);
-				mapAdminRoleService.deleteMapAdminRole(mar);
+				map.setAdminId(id);
+				mapAdminPermissionService.deleteMapAdminPermission(map);
+				//mar.setAdminId(id);
+				//mapAdminRoleService.deleteMapAdminRole(mar);
 			}
-			
 		} catch (Exception e) {
 			logger.error("AdminServiceImpl deleteAdminByIds error:" + e);
 			return false;
@@ -144,6 +149,35 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return true;
 		
+	}
+
+	public boolean saveAdminSetPermission(String adminId, String permissionIds) {
+		try {
+			String[] ids =  permissionIds.split(",");
+			MapAdminPermission mapAdminPermission = new MapAdminPermission();
+			for(String id: ids){
+				mapAdminPermission.setAdminId(Integer.valueOf(adminId));
+				mapAdminPermission.setPermissionId(Integer.valueOf(id));
+				List<MapAdminPermission> list = mapAdminPermissionService.selectMapAdminPermission(mapAdminPermission);
+				if(list != null && list.size() > 0){
+					continue;
+				}
+				mapAdminPermissionService.saveMapAdminPermission(mapAdminPermission);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error("saveAdminSetPermission error:" + e);
+			return false;
+		}
+		return true;
+	}
+
+	public List<Permission> viewAdminPermission(String adminId) {
+		MapAdminPermission mapAdminPermission = new MapAdminPermission();
+		mapAdminPermission.setAdminId(Integer.valueOf(adminId));
+		
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
