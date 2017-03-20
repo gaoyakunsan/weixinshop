@@ -178,7 +178,7 @@ public class AdminControler extends BaseController{
         return list;
     }
 	
-	@RequestMapping(value = "/saveAdminSetRole")
+	/*@RequestMapping(value = "/saveAdminSetRole")
 	@ResponseBody
     public ResModel saveAdminSetRole(HttpServletRequest request,HttpServletResponse response) {
 		ResModel resModel = new ResModel();
@@ -191,7 +191,7 @@ public class AdminControler extends BaseController{
 		boolean bl = adminService.saveAdminSetRole(Integer.valueOf(adminId), roleIds);
 		resModel.setSuccess(bl);
         return resModel;
-    }
+    }*/
 	
 	@RequestMapping(value="/saveAdminSetPermission")
 	@ResponseBody

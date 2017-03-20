@@ -29,7 +29,7 @@ public interface AdminService{
 	
 	public List<AdminSetRoleDTO> adminSetRole(Integer id);
 	
-	public boolean saveAdminSetRole (Integer adminId, String roleIds);
+	//public boolean saveAdminSetRole (Integer adminId, String roleIds);
 	
 	public boolean saveAdminSetPermission(String adminId, String permissionIds);
 	

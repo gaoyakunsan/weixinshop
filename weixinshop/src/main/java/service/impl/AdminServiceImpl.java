@@ -19,13 +19,10 @@ import Mapper.AdminMapper;
 import dto.AdminSetRoleDTO;
 import po.Admin;
 import po.MapAdminPermission;
-import po.MapAdminRole;
 import po.Permission;
 import service.AdminService;
 import service.MapAdminPermissionService;
-import service.MapAdminRoleService;
 import utils.MD5Util;
-import utils.ST;
 @Transactional
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -34,8 +31,6 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private AdminMapper adminMapper;
-	@Autowired
-	private MapAdminRoleService mapAdminRoleService;
 	@Autowired
 	private MapAdminPermissionService mapAdminPermissionService;
 	 
@@ -128,7 +123,7 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.adminSetRole(id);
 	}
 
-	public boolean saveAdminSetRole(Integer adminId, String roleIds) {
+	/*public boolean saveAdminSetRole(Integer adminId, String roleIds) {
 		if(ST.isNull(adminId) || ST.isNull(roleIds)){
 			return false;
 		}
@@ -149,7 +144,7 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return true;
 		
-	}
+	}*/
 
 	public boolean saveAdminSetPermission(String adminId, String permissionIds) {
 		try {
